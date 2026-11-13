@@ -8,7 +8,7 @@ export const site: Site = {
   nome: 'AutoHub',
   tagline: 'Sistema de gestão para revendas de seminovos',
   apoio:
-    'Estoque, clientes, vendas, comissão e metas num só sistema. O dono vê quanto o pátio vale e quanto vai lucrar.',
+    'Estoque, clientes, agenda, vendas e metas num só sistema, com o site da sua loja. O dono vê quanto o pátio vale e quanto vai lucrar.',
 
   nav: [
     { rotulo: 'Itens de série', href: '#itens' },
@@ -61,6 +61,7 @@ export const site: Site = {
   secoes: {
     numeros: 'Em números',
     itens: 'Itens de série',
+    emBreve: 'Em breve',
     versoes: 'Versões',
     semLetraMiuda: 'Sem letra miúda',
   },
@@ -76,22 +77,48 @@ export const site: Site = {
     {
       titulo: 'Dinheiro no pátio',
       texto:
-        'Valor investido, quanto o pátio vale na venda, lucro esperado e os carros parados há mais de 60 dias.',
+        'Quanto você investiu, quanto o pátio vale na venda, o lucro esperado e há quantos dias cada carro está parado.',
     },
     {
-      titulo: 'Nenhum cliente sem resposta',
-      texto:
-        'Quem chama pelo site entra na hora na lista da loja, e o vendedor certo recebe o aviso no celular.',
+      titulo: 'Desconto com limite',
+      texto: 'Você define a margem de cada carro. O vendedor só dá desconto até o mínimo à vista que você liberou.',
     },
     {
-      titulo: 'Quem vendeu e quanto ganhou',
+      titulo: 'Funil de clientes',
       texto:
-        'Cada venda guarda o vendedor. A comissão sai calculada, e cada um acompanha a própria meta.',
+        'Cada cliente num quadro, de lead novo a negociando. Arrastou para "Vendeu", a venda fica com o valor e a forma de pagamento.',
+    },
+    {
+      titulo: 'Nenhum retorno esquecido',
+      texto: 'A agenda junta as visitas e os retornos do dia e mostra quem ficou atrasado.',
+    },
+    {
+      titulo: 'A meta do mês, em ritmo',
+      texto:
+        'Faturamento, lucro, margem e ticket médio do mês. A meta mostra quantas vendas faltam e o ritmo para chegar lá.',
+    },
+    {
+      titulo: 'Site com a cara da sua loja',
+      texto: 'O seu estoque na vitrine, com fotos e ficha de cada carro, e o WhatsApp dos vendedores em cada anúncio.',
+    },
+  ],
+
+  emBreve: [
+    {
+      titulo: 'Comissão por vendedor',
+      texto: 'Cada venda guarda quem vendeu, e a comissão sai calculada no fim do mês.',
+    },
+    {
+      titulo: 'Custo só para o dono',
+      texto: 'O vendedor vê o preço e o desconto liberado. Custo e lucro ficam com você.',
+    },
+    {
+      titulo: 'Cliente do site direto no funil',
+      texto: 'Quem chama pelo site entra na hora na lista, e o vendedor recebe o aviso no celular.',
     },
     {
       titulo: 'Qual portal traz venda',
-      texto:
-        'Na versão Loja+, todo cliente entra com a origem marcada. No fim do mês você vê o custo por venda de cada portal.',
+      texto: 'A origem de cada cliente ligada à venda e o custo por venda de cada portal.',
     },
   ],
 
@@ -103,12 +130,14 @@ export const site: Site = {
     naoIncluido: 'não incluído',
     linhas: [
       { rotulo: 'Site da loja', loja: true, lojaPlus: true },
-      { rotulo: 'Estoque com fotos', loja: true, lojaPlus: true },
-      { rotulo: 'Clientes e funil de vendas', loja: true, lojaPlus: true },
-      { rotulo: 'Vendas, comissão e metas por vendedor', loja: true, lojaPlus: true },
+      { rotulo: 'Estoque com fotos e margem por carro', loja: true, lojaPlus: true },
+      { rotulo: 'Clientes, funil e agenda', loja: true, lojaPlus: true },
+      { rotulo: 'Vendas, relatórios e meta do mês', loja: true, lojaPlus: true },
       { rotulo: 'Painel do dono', loja: true, lojaPlus: true },
-      { rotulo: 'Origem de cada cliente', loja: false, lojaPlus: true },
-      { rotulo: 'Custo por venda de cada portal', loja: false, lojaPlus: true },
+      { rotulo: 'Equipe com dono, gerente e vendedor', loja: true, lojaPlus: true },
+      { rotulo: 'Comissão por vendedor', loja: 'Em breve', lojaPlus: 'Em breve' },
+      { rotulo: 'Origem de cada cliente', loja: false, lojaPlus: 'Em breve' },
+      { rotulo: 'Custo por venda de cada portal', loja: false, lojaPlus: 'Em breve' },
       { rotulo: 'Relatório mensal para o dono', loja: false, lojaPlus: true },
       { rotulo: 'Tamanho do pátio', loja: 'Até 30 carros', lojaPlus: 'Até 80 carros' },
     ],
@@ -122,7 +151,7 @@ export const site: Site = {
 
   semLetraMiuda: [
     { titulo: 'Cancela por mensagem', texto: 'Não tem adesão nem fidelidade.' },
-    { titulo: 'Os dados são seus', texto: 'Você exporta tudo em planilha quando quiser.' },
+    { titulo: 'Os dados são seus', texto: 'Se um dia sair, você leva tudo em planilha.' },
     {
       titulo: 'Quem atende é quem fez',
       texto: 'Implantação na sua loja em um dia e suporte pelo WhatsApp.',
@@ -139,7 +168,7 @@ export const site: Site = {
   seo: {
     titulo: 'AutoHub: sistema de gestão para revendas de seminovos',
     descricao:
-      'Estoque, clientes, vendas, comissão e metas num só sistema. O dono vê quanto o pátio vale e quanto vai lucrar.',
+      'Estoque, clientes, agenda, vendas e metas num só sistema, com o site da sua loja. O dono vê quanto o pátio vale e quanto vai lucrar.',
     nomeSite: 'AutoHub',
     imagemAlt:
       'AutoHub, sistema de gestão para revendas de seminovos, e o painel Loja agora com o dinheiro investido no pátio.',

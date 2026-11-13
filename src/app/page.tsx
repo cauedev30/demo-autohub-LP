@@ -1,3 +1,4 @@
+import { EmBreve } from '@/components/EmBreve';
 import { Fechamento } from '@/components/Fechamento';
 import { Hero } from '@/components/Hero';
 import { ItensDeSerie } from '@/components/ItensDeSerie';
@@ -16,6 +17,7 @@ export default function Home() {
         <Hero />
         <Numeros />
         <ItensDeSerie />
+        <EmBreve />
         <Versoes />
         <SemLetraMiuda />
         <Fechamento />

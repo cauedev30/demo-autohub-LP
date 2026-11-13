@@ -31,6 +31,7 @@ describe('conteúdo da landing', () => {
       ...Object.values(site.secoes),
       ...site.numeros.flatMap((n) => [n.valor, n.rotulo]),
       ...site.itens.flatMap((i) => [i.titulo, i.texto]),
+      ...site.emBreve.flatMap((i) => [i.titulo, i.texto]),
       ...site.versoes.colunas,
       site.versoes.descricao,
       site.versoes.incluido,
@@ -53,7 +54,8 @@ describe('conteúdo da landing', () => {
     expect(site.painel.metricas).toHaveLength(3);
     expect(site.painel.idade).toHaveLength(4);
     expect(site.numeros).toHaveLength(4);
-    expect(site.itens).toHaveLength(4);
+    expect(site.itens).toHaveLength(6);
+    expect(site.emBreve).toHaveLength(4);
     expect(site.semLetraMiuda).toHaveLength(3);
   });
 

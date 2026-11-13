@@ -69,6 +69,7 @@ export type Fechamento = { titulo: string; texto: string };
 export type Secoes = {
   numeros: string;
   itens: string;
+  emBreve: string;
   versoes: string;
   semLetraMiuda: string;
 };
@@ -119,6 +120,8 @@ export type Site = {
   secoes: Secoes;
   numeros: Numero[];
   itens: ItemDeSerie[];
+  /** O que ainda está sendo construído: aparece depois dos itens de série, sem data prometida. */
+  emBreve: ItemDeSerie[];
   versoes: Versoes;
   semLetraMiuda: ItemSemLetraMiuda[];
   fechamento: Fechamento;

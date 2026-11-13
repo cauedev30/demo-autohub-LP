@@ -83,15 +83,20 @@ for (const largura of larguras) {
       const h2 = titulos.filter((t) => t.nivel === 2).map((t) => t.texto);
       expect(h2).toEqual([
         site.secoes.itens,
+        site.secoes.emBreve,
         site.secoes.versoes,
         site.secoes.semLetraMiuda,
         site.fechamento.titulo,
       ]);
       const h3 = titulos.filter((t) => t.nivel === 3).map((t) => t.texto);
-      expect(h3).toEqual([...site.itens.map((i) => i.titulo), ...site.semLetraMiuda.map((i) => i.titulo)]);
+      expect(h3).toEqual([
+        ...site.itens.map((i) => i.titulo),
+        ...site.emBreve.map((i) => i.titulo),
+        ...site.semLetraMiuda.map((i) => i.titulo),
+      ]);
     });
 
-    test('os quatro itens e os quatro números aparecem na ordem do conteúdo', async ({ page }) => {
+    test('os itens e os quatro números aparecem na ordem do conteúdo', async ({ page }) => {
       await page.goto('/');
       const itens = page.locator('#itens li');
       await expect(itens).toHaveCount(site.itens.length);
@@ -373,7 +378,7 @@ test.describe('prefers-reduced-motion: reduce', () => {
         .map((el) => `${el.tagName}.${el.className}`),
     );
     expect(escondidos).toEqual([]);
-    for (const titulo of [site.secoes.itens, site.secoes.versoes, site.secoes.semLetraMiuda, site.fechamento.titulo]) {
+    for (const titulo of [site.secoes.itens, site.secoes.emBreve, site.secoes.versoes, site.secoes.semLetraMiuda, site.fechamento.titulo]) {
       await expect(page.getByRole('heading', { level: 2, name: titulo })).toBeVisible();
     }
 

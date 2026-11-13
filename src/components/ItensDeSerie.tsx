@@ -2,7 +2,7 @@ import { site } from '@/content/site';
 import secao from './Secao.module.css';
 import styles from './ItensDeSerie.module.css';
 
-/** "Itens de série": os quatro itens como linhas grandes com divisória (uma coluna no celular). */
+/** "Itens de série": os itens como linhas grandes com divisória (uma coluna no celular). */
 export function ItensDeSerie() {
   return (
     <section className={secao.secao} id="itens">
