@@ -1,0 +1,125 @@
+/* Portado de .hero / .hero-in / .hero-texto / .palco / .cena / .spot / .freio da direção Noite
+   (regras base + :root[data-dir="escuro"]). --piso e --cel-w são lidos também pelo CelularLoja. */
+.hero {
+  --piso: 120px;
+  --cel-w: 168px;
+  position: relative;
+  overflow: hidden;
+}
+
+.dentro {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  align-items: center;
+  gap: 24px 40px;
+  max-width: var(--largura);
+  margin-inline: auto;
+  padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
+  padding-block: clamp(20px, 5vw, 56px) 0;
+}
+
+.texto {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  text-align: left;
+}
+
+.tagline {
+  color: var(--mudo);
+  font-size: 0.9375rem;
+}
+
+/* O h1 é a logo (SVG) com o nome só para leitor de tela; ela ocupa a coluna do texto. */
+.logo {
+  width: 100%;
+  max-width: 34rem;
+  line-height: 0;
+}
+
+.logoSvg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.apoio {
+  color: var(--mudo);
+  max-width: 46ch;
+  font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+  text-wrap: balance;
+}
+
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.palco {
+  position: relative;
+}
+
+.cena {
+  position: relative;
+  padding-top: 48px;
+  padding-bottom: var(--piso);
+}
+
+/* spot de luz de fundo */
+.spot {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(46% 62% at 72% 34%, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0) 70%),
+    radial-gradient(30% 40% at 12% 0%, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0) 70%);
+}
+
+/* fio vermelho no pé do hero: acende uma vez */
+.freio {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: min(620px, 64%);
+  height: 2px;
+  transform: translateX(-50%);
+  background: var(--vermelho);
+  box-shadow: 0 0 26px 3px rgba(211, 38, 28, 0.55);
+  animation: freio 1.4s 0.8s var(--suave) both;
+}
+
+@keyframes freio {
+  from {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 860px) {
+  .hero {
+    --piso: 90px;
+  }
+
+  .dentro {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+}
+
+@media (max-width: 560px) {
+  /* a linha de botões ocupa a largura toda, no mesmo limite do painel logo abaixo */
+  .acoes {
+    align-self: stretch;
+  }
+  .acoes > a {
+    flex: 1 1 100%;
+  }
+}

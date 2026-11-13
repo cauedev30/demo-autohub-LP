@@ -1,0 +1,6 @@
+/* Portado de .rodape da direção Noite. O vão de baixo (120px) existia por causa do seletor de direções, que não vem. */
+.rodape {
+  padding-block: 24px 56px;
+  color: var(--mudo);
+  font-size: 0.875rem;
+}

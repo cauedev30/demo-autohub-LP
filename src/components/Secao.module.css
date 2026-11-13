@@ -1,0 +1,23 @@
+/* Base das seções com título (itens, versões, sem letra miúda, fechamento): .secao e .titulo da direção Noite
+   (regras base + :root[data-dir="escuro"]). Importado por cada componente de seção, junto do módulo próprio. */
+.secao {
+  padding-block: clamp(56px, 9vw, 112px);
+  border-top: 1px solid var(--fio);
+  /* não há barra fixa no topo: a seção chega rente ao alto da janela (vale também para o link nativo, sem JS) */
+  scroll-margin-top: 0;
+}
+
+/* o alvo do clique recebe foco por código (ver RolagemSuave); o contorno só atrapalharia numa seção inteira */
+.secao:focus {
+  outline: none;
+}
+
+.titulo {
+  font-weight: 700;
+  font-stretch: 125%;
+  font-size: clamp(1.75rem, 3.4vw, 2.75rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+  margin-bottom: clamp(28px, 4vw, 48px);
+}

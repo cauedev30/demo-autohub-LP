@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "autohub-site",
+  "compatibility_date": "2026-11-01",
+  // Worker só de arquivos estáticos (Workers Static Assets): serve a pasta out/ gerada por "npm run build".
+  // A rota do domínio fica para a etapa 4 (depende da pendência do domínio).
+  "assets": {
+    "directory": "./out",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}

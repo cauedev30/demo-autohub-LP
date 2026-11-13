@@ -1,0 +1,104 @@
+/* Portado de .celular e .cel-* da direção Noite. --piso e --cel-w vêm do .hero (Hero.module.css). */
+.celular {
+  position: absolute;
+  right: 0;
+  bottom: calc(var(--piso, 120px) - 76px);
+  width: var(--cel-w, 168px);
+  padding: 7px;
+  border-radius: 28px;
+  background: #1b1d21;
+  box-shadow:
+    0 30px 50px -30px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+  -webkit-box-reflect: below 0 linear-gradient(transparent 80%, rgba(0, 0, 0, 0.14));
+}
+
+.tela {
+  display: grid;
+  gap: 8px;
+  padding: 14px 12px 12px;
+  border-radius: 22px;
+  background: #ffffff;
+  color: #14161a;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.topo {
+  font-size: 11px;
+}
+
+.topo b {
+  font-weight: 800;
+  font-stretch: 112%;
+}
+
+.titulo {
+  font-weight: 700;
+  font-stretch: 108%;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.apoio {
+  color: #5a6068;
+}
+
+.chips {
+  display: flex;
+  gap: 5px;
+}
+
+.chips span {
+  padding: 3px 8px;
+  border: 1px solid #e4e6e8;
+  border-radius: 4px;
+  font-size: 10px;
+}
+
+.chips .ligado {
+  background: #14161a;
+  border-color: #14161a;
+  color: #ffffff;
+}
+
+.carro {
+  display: grid;
+  gap: 5px;
+}
+
+.foto {
+  display: grid;
+  place-items: center;
+  height: 62px;
+  border-radius: 6px;
+  background: #f3f4f5;
+  color: #9ba1a8;
+}
+
+.foto .icone {
+  width: 96px;
+}
+
+.linha {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  align-items: baseline;
+}
+
+.linha b {
+  font-weight: 650;
+}
+
+.linha em {
+  font-style: normal;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 860px) {
+  .celular {
+    display: none;
+  }
+}

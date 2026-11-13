@@ -1,0 +1,32 @@
+/* Portado de .numeros / .num-grid / .n / .nl da direção Noite (peso 800 da direção escura). */
+.numeros {
+  padding-block: clamp(44px, 7vw, 88px);
+}
+
+.grade {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px 24px;
+}
+
+.valor {
+  font-stretch: 125%;
+  font-weight: 800;
+  font-size: clamp(1.5rem, 3.2vw, 2.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+}
+
+.rotulo {
+  margin-top: 8px;
+  color: var(--mudo);
+  font-size: 0.9375rem;
+  max-width: 24ch;
+}
+
+@media (max-width: 860px) {
+  .grade {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

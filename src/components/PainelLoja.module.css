@@ -1,0 +1,167 @@
+/* Portado de .painel e filhos da direção Noite (regras base + :root[data-dir="escuro"]). */
+.painel {
+  position: relative;
+  overflow: hidden;
+  container-type: inline-size;
+  width: calc(100% - 148px);
+  padding: clamp(16px, 2.4vw, 28px);
+  border-radius: 10px;
+  background: var(--painel);
+  color: var(--painel-fg);
+  box-shadow: 0 40px 60px -44px rgba(255, 255, 255, 0.18);
+  -webkit-box-reflect: below 0 linear-gradient(transparent 70%, rgba(0, 0, 0, 0.22));
+}
+
+/* brilho que passa uma vez */
+.painel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    rgba(20, 22, 26, 0) 30%,
+    rgba(20, 22, 26, 0.04) 41%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(20, 22, 26, 0.04) 59%,
+    rgba(20, 22, 26, 0) 70%
+  );
+  transform: translateX(-130%);
+  animation: luz 2.1s 0.5s var(--suave) both;
+}
+
+.cab {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 16px;
+  margin-bottom: 18px;
+}
+
+.cab strong {
+  font-weight: 650;
+  font-stretch: 108%;
+}
+
+.cab span {
+  font-size: 0.8125rem;
+  opacity: 0.62;
+}
+
+.metricas {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px 20px;
+  margin-bottom: 22px;
+}
+
+.metricas dt {
+  font-size: 0.8125rem;
+  opacity: 0.62;
+}
+
+.metricas dd {
+  font-size: clamp(1rem, 2.2cqi, 1.625rem);
+  font-weight: 600;
+  font-stretch: 106%;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* barra de idade: cada faixa ocupa uma parte proporcional a --n; cresce uma vez */
+.idade {
+  display: flex;
+  gap: 2px;
+  height: 10px;
+  margin-bottom: 14px;
+}
+
+.faixa {
+  flex: var(--n) 1 0;
+  border-radius: 2px;
+  transform-origin: left;
+  animation: cresce 1.1s 0.6s var(--suave) both;
+}
+
+.legenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  font-size: 0.8125rem;
+}
+
+.legenda li {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  opacity: 0.85;
+}
+
+.marca {
+  width: 8px;
+  height: 8px;
+  border-radius: 1px;
+}
+
+/* o vermelho só na faixa parada */
+.novo {
+  background: var(--idade-novo);
+}
+
+.medio {
+  background: var(--idade-medio);
+}
+
+.velho {
+  background: var(--idade-velho);
+}
+
+.parado {
+  background: var(--vermelho);
+}
+
+@container (max-width: 400px) {
+  .metricas {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .metricas div {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+  }
+}
+
+@keyframes luz {
+  from {
+    transform: translateX(-130%);
+  }
+  to {
+    transform: translateX(130%);
+  }
+}
+
+@keyframes cresce {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (max-width: 860px) {
+  .painel {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .painel::after {
+    display: none;
+  }
+}

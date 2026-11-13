@@ -1,0 +1,121 @@
+/* Portado de .tabela-rolagem / table / .sim / .nao / .preco / .nota da direção Noite (com a coluna Loja+ em --faixa). */
+.rolagem {
+  overflow-x: auto;
+  /* contém os textos .sr (position: absolute) das células: sem isso, os da coluna Loja+ ficariam fora da janela
+     e alargariam a página */
+  position: relative;
+}
+
+/* o contêiner rola porque a tabela tem largura mínima: só acontece em telas estreitas */
+.tabela {
+  width: 100%;
+  min-width: 520px;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.tabela th,
+.tabela td {
+  padding: 14px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--fio);
+  vertical-align: top;
+}
+
+.tabela thead th {
+  font-stretch: 110%;
+  font-weight: 650;
+  border-bottom: 1px solid var(--fg);
+}
+
+.tabela tbody th {
+  font-weight: 400;
+}
+
+.tabela th:first-child,
+.tabela td:first-child {
+  padding-left: 0;
+}
+
+.tabela td:not(:first-child),
+.tabela thead th:not(:first-child) {
+  width: 26%;
+}
+
+/* coluna Loja+ levemente mais clara */
+.tabela th:nth-child(3),
+.tabela td:nth-child(3) {
+  background: var(--faixa);
+  padding-left: 16px;
+}
+
+.sim {
+  font-size: 1.0625rem;
+}
+
+.nao {
+  color: var(--mudo);
+}
+
+.tabela .preco th,
+.tabela .preco td {
+  border-top: 2px solid var(--fg);
+  border-bottom: 0;
+  padding-top: 20px;
+  font-weight: 600;
+}
+
+.tabela .preco td {
+  font-stretch: 110%;
+  font-size: 1.5rem;
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
+}
+
+.tabela .preco small {
+  display: block;
+  margin-top: 6px;
+  color: var(--mudo);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  font-stretch: 100%;
+}
+
+/* Tela estreita: as três colunas cabem inteiras (nada de coluna Loja+ escondida atrás de uma rolagem lateral).
+   O contêiner continua com overflow-x: auto só como rede de segurança. */
+@media (max-width: 560px) {
+  .tabela {
+    min-width: 0;
+    font-size: 0.8125rem;
+  }
+
+  .tabela th,
+  .tabela td {
+    padding: 12px 8px;
+  }
+
+  .tabela th:nth-child(3),
+  .tabela td:nth-child(3) {
+    padding-left: 10px;
+  }
+
+  .tabela td:not(:first-child),
+  .tabela thead th:not(:first-child) {
+    width: 28%;
+  }
+
+  .tabela .preco td {
+    font-size: 1.0625rem;
+  }
+
+  .tabela .preco small {
+    font-size: 0.75rem;
+  }
+}
+
+.nota {
+  margin-top: 24px;
+  max-width: 70ch;
+  color: var(--mudo);
+  font-size: 0.875rem;
+}

@@ -1,0 +1,152 @@
+/* Archivo variável com o eixo de largura (wdth 62%..125%), servida junto do site: nenhuma chamada ao Google. */
+@import '@fontsource-variable/archivo/wdth.css';
+@import 'tailwindcss';
+
+/* Direção "Noite" (landing/direcoes-visuais/index.html): preto, branco e cinza; vermelho só no que está parado. */
+:root {
+  --bg: #0b0c0e;
+  --fg: #f4f5f6;
+  --mudo: #9ba1a8;
+  --fio: #26292d;
+  --faixa: #131518;
+  --vermelho: #d3261c;
+
+  /* painel "Loja agora" (claro sobre o fundo preto) */
+  --painel: #f4f5f6;
+  --painel-fg: #14161a;
+
+  /* faixas de idade do estoque; a quarta ("parado") é o --vermelho */
+  --idade-novo: #14161a;
+  --idade-medio: #6a7078;
+  --idade-velho: #b9bec4;
+
+  --fonte: 'Archivo Variable', 'Helvetica Neue', Arial, sans-serif;
+  --suave: cubic-bezier(0.22, 1, 0.36, 1);
+  --largura: 1200px;
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--fonte);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  font-stretch: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+dl,
+dd,
+table {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* Alvos de rolagem focados por código (main, seções): o foco vai para o teclado seguir dali, sem moldura em volta da área toda. */
+[tabindex='-1']:focus {
+  outline: none;
+}
+
+/* "Pular para o conteúdo": fora da tela até receber o foco do teclado (primeiro Tab). */
+.pular {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 4px;
+  background: var(--fg);
+  color: var(--bg);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+
+.pular:focus {
+  transform: none;
+  outline: 2px solid var(--fg);
+  outline-offset: 3px;
+}
+
+/* só para leitor de tela */
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.wrap {
+  max-width: var(--largura);
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* Entrada do topo: roda uma vez ao carregar, só com CSS. O atraso escalonado vem de --i (90ms por posição),
+   definido em cada elemento. Com prefers-reduced-motion a regra global abaixo desliga a animação e tudo fica visível. */
+.entra {
+  animation: entra 0.9s var(--suave) both;
+  animation-delay: calc(var(--i, 0) * 90ms);
+}
+
+@keyframes entra {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

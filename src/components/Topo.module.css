@@ -1,0 +1,51 @@
+/* Portado de .topo / .marca / .nav / .nav-link da direção Noite. */
+.topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 14px;
+}
+
+.marca {
+  text-decoration: none;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.marcaSvg {
+  display: block;
+  height: 22px;
+  width: auto;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 3vw, 32px);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 0.9375rem;
+  color: var(--mudo);
+  text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) 0 calc(50% + 12px) / 0 1px no-repeat;
+  transition:
+    background-size 0.3s var(--suave),
+    color 0.2s;
+}
+
+.link:hover {
+  color: var(--fg);
+  background-size: 100% 1px;
+}
+
+@media (max-width: 560px) {
+  .link {
+    display: none;
+  }
+}

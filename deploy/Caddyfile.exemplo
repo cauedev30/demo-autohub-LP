@@ -1,0 +1,53 @@
+# Exemplo de Caddyfile para servir o site na VPS: copie para /etc/caddy/Caddyfile e troque o domínio e a pasta.
+# Serve a pasta out/ (resultado de "npm run build") com os mesmos cabeçalhos e o mesmo cache do public/_headers,
+# que o Cloudflare lê sozinho e o Caddy não. O HTTPS (certificado Let's Encrypt e redirecionamento de http para
+# https) o Caddy faz sozinho quando o DNS do domínio já aponta para a VPS e as portas 80 e 443 estão abertas.
+#
+# Conferir a sintaxe:  caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile
+# Aplicar sem derrubar: sudo systemctl reload caddy
+#
+# Se mudar o public/_headers, mude aqui também (os dois precisam dizer a mesma coisa).
+
+# Cabeçalhos de segurança, iguais ao bloco /* do _headers. HSTS sem includeSubDomains, como lá.
+(seguranca) {
+	header {
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+		Strict-Transport-Security "max-age=31536000"
+	}
+}
+
+autohub.exemplo.com.br {
+	root * /var/www/autohub/out
+	encode zstd gzip
+
+	import seguranca
+
+	# O _headers vai junto na pasta out/, mas é arquivo do Cloudflare: não se serve.
+	@interno path /_headers
+	error @interno 404
+
+	# Arquivos com hash no nome (JS, CSS e a fonte): cache longo.
+	@com_hash path /_next/static/*
+	header @com_hash Cache-Control "public, max-age=31536000, immutable"
+
+	# Todo o resto (HTML, robots.txt, sitemap.xml, og.png, ícone): sempre revalida, como no Cloudflare.
+	@sem_hash not path /_next/static/*
+	header @sem_hash Cache-Control "public, max-age=0, must-revalidate"
+
+	# /rota/ vira rota/index.html (o export usa trailingSlash); /rota redireciona para /rota/.
+	file_server
+
+	# Endereço que não existe: a página 404 do site (out/404.html), com status 404.
+	handle_errors {
+		@nao_achou expression {err.status_code} == 404
+		handle @nao_achou {
+			import seguranca
+			header Cache-Control "public, max-age=0, must-revalidate"
+			rewrite * /404.html
+			file_server
+		}
+	}
+}

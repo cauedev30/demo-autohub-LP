@@ -1,0 +1,19 @@
+/* Portado de .tres da direção Noite. */
+.tres {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 28px 32px;
+}
+
+.tres h3 {
+  font-weight: 650;
+  font-stretch: 108%;
+  font-size: 1.125rem;
+  margin-bottom: 8px;
+}
+
+.tres p {
+  color: var(--mudo);
+  font-size: 0.9375rem;
+  max-width: 34ch;
+}

@@ -1,0 +1,39 @@
+/* Portado de .itens da direção Noite (regras base + :root[data-dir="escuro"]). */
+.itens {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.itens li {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 8px 40px;
+  align-items: baseline;
+  border-top: 1px solid var(--fio);
+  padding-block: 28px;
+}
+
+.itens li:last-child {
+  border-bottom: 1px solid var(--fio);
+}
+
+.itens h3 {
+  font-weight: 700;
+  font-stretch: 120%;
+  font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+  line-height: 1.25;
+  margin: 0;
+}
+
+.itens p {
+  color: var(--mudo);
+  font-size: 1rem;
+  max-width: 52ch;
+}
+
+@media (max-width: 860px) {
+  .itens li {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -1,0 +1,47 @@
+/* Portado de .final da direção Noite (regras base + :root[data-dir="escuro"]). O .secao vem de Secao.module.css. */
+.fechamento {
+  text-align: center;
+  padding-bottom: 40px;
+}
+
+/* a linha vermelha curta acima do título: o terceiro (e último) uso do vermelho, além do fio do hero e da faixa "parado" */
+.fechamento::before {
+  content: '';
+  display: block;
+  width: 64px;
+  height: 3px;
+  margin: 0 auto 32px;
+  background: var(--vermelho);
+  box-shadow: 0 0 22px 2px rgba(211, 38, 28, 0.5);
+}
+
+.titulo {
+  font-weight: 800;
+  font-stretch: 125%;
+  font-size: clamp(2.25rem, 6vw, 5rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  max-width: 12ch;
+  margin-inline: auto;
+  margin-bottom: 22px;
+}
+
+.texto {
+  color: var(--mudo);
+  max-width: 52ch;
+  margin-inline: auto;
+  margin-bottom: 30px;
+}
+
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+@media (max-width: 560px) {
+  .acoes > a {
+    flex: 1 1 100%;
+  }
+}
