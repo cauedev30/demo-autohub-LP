@@ -279,3 +279,9 @@ test.describe('prefers-reduced-motion: reduce', () => {
     for (const t of faixas) expect(t).toBe('none');
   });
 });
+
+test('em 320px a barra do topo cabe na tela, sem rolagem horizontal', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 640 });
+  await page.goto('/');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(320);
+});

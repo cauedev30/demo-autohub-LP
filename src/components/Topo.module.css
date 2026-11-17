@@ -49,3 +49,18 @@
     display: none;
   }
 }
+
+/* em 320px a logo e o botão não cabiam lado a lado e a página rolava para o lado */
+@media (max-width: 360px) {
+  .topo {
+    gap: 8px;
+  }
+
+  .marcaSvg {
+    height: 18px;
+  }
+
+  .nav a {
+    padding-inline: 12px;
+  }
+}
