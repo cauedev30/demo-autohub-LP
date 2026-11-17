@@ -100,16 +100,17 @@ export const site: Site = {
         'Faturamento, lucro, margem e ticket médio do mês num lugar só. A meta diz quantas vendas faltam e em que ritmo, por exemplo uma venda a cada 3 dias.',
     },
     {
+      titulo: 'Comissão por vendedor',
+      texto:
+        'Você escolhe a regra: valor fixo por carro, % da venda ou % do lucro. A comissão de cada venda sai calculada na hora, e o vendedor vê só as dele.',
+    },
+    {
       titulo: 'Site com a cara da sua loja',
       texto: 'O site mostra o seu estoque com fotos e a ficha de cada carro, e cada anúncio leva o WhatsApp dos vendedores.',
     },
   ],
 
   emBreve: [
-    {
-      titulo: 'Comissão por vendedor',
-      texto: 'Cada venda registra quem vendeu, e no fim do mês a comissão já sai calculada.',
-    },
     {
       titulo: 'Cliente do site direto no funil',
       texto: 'Quem chama pelo site entra no funil na hora, e o vendedor recebe o aviso no celular.',
@@ -133,7 +134,7 @@ export const site: Site = {
       { rotulo: 'Vendas, relatórios e meta do mês', loja: true, lojaPlus: true },
       { rotulo: 'Painel do dono', loja: true, lojaPlus: true },
       { rotulo: 'Equipe com dono, gerente e vendedor', loja: true, lojaPlus: true },
-      { rotulo: 'Comissão por vendedor', loja: 'Em breve', lojaPlus: 'Em breve' },
+      { rotulo: 'Comissão por vendedor', loja: true, lojaPlus: true },
       { rotulo: 'Origem de cada cliente', loja: false, lojaPlus: 'Em breve' },
       { rotulo: 'Custo por venda de cada portal', loja: false, lojaPlus: 'Em breve' },
       { rotulo: 'Relatório mensal para o dono', loja: false, lojaPlus: true },
