@@ -81,6 +81,11 @@ export const site: Site = {
       texto: 'Você define a margem de cada carro, e o vendedor só dá desconto até o mínimo à vista que você liberou.',
     },
     {
+      titulo: 'Custo só para o dono',
+      texto:
+        'O vendedor vê o preço e o desconto liberado. Custo, margem e lucro só aparecem para você e para o gerente.',
+    },
+    {
       titulo: 'Funil de clientes',
       texto:
         'Cada cliente vira um cartão no quadro, do primeiro contato até a negociação. Arrastou para "Vendeu", a venda fica registrada com o valor e a forma de pagamento.',
@@ -104,10 +109,6 @@ export const site: Site = {
     {
       titulo: 'Comissão por vendedor',
       texto: 'Cada venda registra quem vendeu, e no fim do mês a comissão já sai calculada.',
-    },
-    {
-      titulo: 'Custo só para o dono',
-      texto: 'O vendedor vê o preço e o desconto liberado. Custo e lucro ficam com você.',
     },
     {
       titulo: 'Cliente do site direto no funil',

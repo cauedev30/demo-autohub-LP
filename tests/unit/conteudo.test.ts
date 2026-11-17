@@ -56,8 +56,8 @@ describe('conteúdo da landing', () => {
     expect(site.painel.metricas).toHaveLength(3);
     expect(site.painel.idade).toHaveLength(4);
     expect(site.numeros).toHaveLength(4);
-    expect(site.itens).toHaveLength(6);
-    expect(site.emBreve).toHaveLength(4);
+    expect(site.itens).toHaveLength(7);
+    expect(site.emBreve).toHaveLength(3);
     expect(site.semLetraMiuda).toHaveLength(3);
     expect(site.perguntas.length).toBeGreaterThanOrEqual(6);
   });
