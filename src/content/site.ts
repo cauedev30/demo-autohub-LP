@@ -69,7 +69,7 @@ export const site: Site = {
   numeros: [
     { valor: '1 dia', rotulo: 'de implantação, feita na sua loja' },
     { valor: 'R$ 0', rotulo: 'de adesão, e sem fidelidade' },
-    { valor: 'Equipe toda', rotulo: 'sem cobrança por usuário' },
+    { valor: 'Ilimitados', rotulo: 'usuários: a equipe toda entra, sem custo a mais' },
     { valor: 'R$ 299', rotulo: 'por mês, até 30 carros' },
   ],
 
