@@ -367,7 +367,7 @@ for (const largura of larguras) {
   });
 }
 
-test.describe('"Equipe toda" ao lado do número vizinho', () => {
+test.describe('"Ilimitados" ao lado do número vizinho', () => {
   for (const largura of [1024, 861, 1440]) {
     test(`não encosta em ${largura}px`, async ({ page }) => {
       await page.setViewportSize({ width: largura, height: 900 });
@@ -383,7 +383,7 @@ test.describe('"Equipe toda" ao lado do número vizinho', () => {
             return { texto: el.textContent, esquerda: texto.left, direita: texto.right, colunaDireita: coluna.right };
           }),
       );
-      const i = caixas.findIndex((c) => c.texto === 'Equipe toda');
+      const i = caixas.findIndex((c) => c.texto === 'Ilimitados');
       expect(i).toBeGreaterThan(-1);
       const proximo = caixas[i + 1];
       // o texto cabe na própria coluna e deixa um vão visível até o número vizinho

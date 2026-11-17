@@ -268,7 +268,8 @@ test.describe('prefers-reduced-motion: reduce', () => {
 
   test('o painel inteiro aparece, e o brilho e a barra de idade ficam parados e completos', async ({ page }) => {
     await page.goto('/');
-    const painel = page.getByRole('group');
+    // as perguntas frequentes usam <details>, que também é group: filtra pelo nome do painel
+    const painel = page.getByRole('group', { name: site.acessibilidade.painel });
     await expect(painel).toBeVisible();
     expect(await painel.evaluate((el) => getComputedStyle(el).opacity)).toBe('1');
     const faixas = await page

@@ -72,7 +72,7 @@ build padrão.
   ```
 
   `scripts/gerar-og.mjs` sobe um servidor local de `out/` na porta 4181 (`OG_PORTA` muda), abre o hero em 1440x756 com
-  movimento reduzido, esconde a barra do topo e as outras seções e reduz para 1200x630.
+  movimento reduzido, mantém a barra do topo (com a marca), esconde as outras seções e reduz para 1200x630.
 - Para ver como o link aparece colado: publique e use o depurador de link do próprio WhatsApp/Facebook/LinkedIn (eles
   guardam cache; se mudar a imagem depois, use o botão de "raspar de novo").
 
