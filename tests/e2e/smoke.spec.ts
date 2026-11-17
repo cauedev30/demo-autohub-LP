@@ -37,7 +37,7 @@ for (const largura of larguras) {
   });
 }
 
-test('a Archivo carrega do próprio site e o h1 do hero é a logo do AutoHub', async ({ page }) => {
+test('a Archivo carrega do próprio site e o h1 do hero é a promessa, na Archivo', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/');
   await page.evaluate(() => document.fonts.ready);
@@ -46,12 +46,9 @@ test('a Archivo carrega do próprio site e o h1 do hero é a logo do AutoHub', a
   );
   expect(carregada).toBe(true);
 
-  // O h1 traz o nome para leitor de tela e a logo em SVG (decorativa), larga o bastante para ler a marca.
+  // O h1 é a frase da promessa (a marca fica na barra do topo), desenhada com a Archivo.
   const h1 = page.getByRole('heading', { level: 1 });
-  await expect(h1).toHaveText(site.nome);
-  const logo = h1.locator('svg[aria-hidden="true"]');
-  await expect(logo).toHaveCount(1);
-  const caixa = await logo.boundingBox();
-  expect(caixa?.width ?? 0).toBeGreaterThan(300);
-  expect((caixa?.width ?? 0) / (caixa?.height ?? 1)).toBeGreaterThan(6);
+  await expect(h1).toHaveText(site.titulo);
+  const fonte = await h1.evaluate((el) => getComputedStyle(el).fontFamily);
+  expect(fonte).toContain('Archivo');
 });

@@ -31,17 +31,15 @@
   font-size: 0.9375rem;
 }
 
-/* O h1 é a logo (SVG) com o nome só para leitor de tela; ela ocupa a coluna do texto. */
-.logo {
-  width: 100%;
-  max-width: 34rem;
-  line-height: 0;
-}
-
-.logoSvg {
-  display: block;
-  width: 100%;
-  height: auto;
+/* O h1 é a promessa, no corte largo dos títulos de seção e do fechamento, um pouco menos esticado para a frase
+   longa caber em quatro linhas na coluna do texto. A marca fica na barra do topo. */
+.titulo {
+  font-weight: 800;
+  font-stretch: 112%;
+  font-size: clamp(2.125rem, 3.8vw, 3.375rem);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
 .apoio {
@@ -112,6 +110,10 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
+  /* numa coluna só a frase ganha a largura toda: cresce com a tela até o tamanho do desktop */
+  .titulo {
+    font-size: clamp(2.125rem, 6.2vw, 3.25rem);
+  }
 }
 
 @media (max-width: 560px) {
