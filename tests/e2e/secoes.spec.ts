@@ -74,7 +74,7 @@ for (const largura of larguras) {
         .locator('h1, h2, h3, h4, h5, h6')
         .evaluateAll((els) => els.map((el) => ({ nivel: Number(el.tagName[1]), texto: el.textContent?.trim() ?? '' })));
 
-      expect(titulos[0]).toEqual({ nivel: 1, texto: site.nome });
+      expect(titulos[0]).toEqual({ nivel: 1, texto: site.titulo });
       for (let i = 1; i < titulos.length; i++) {
         expect(titulos[i].nivel, `"${titulos[i].texto}" depois de "${titulos[i - 1].texto}"`).toBeLessThanOrEqual(
           titulos[i - 1].nivel + 1,

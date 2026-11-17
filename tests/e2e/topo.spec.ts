@@ -22,7 +22,7 @@ for (const largura of larguras) {
       await page.goto('/');
       await page.evaluate(() => document.fonts.ready);
 
-      await expect(page.getByRole('heading', { level: 1 })).toHaveText(site.nome);
+      await expect(page.getByRole('heading', { level: 1 })).toHaveText(site.titulo);
       const rolagem = await page.evaluate(() => ({
         pagina: document.documentElement.scrollWidth - document.documentElement.clientWidth,
         corpo: document.body.scrollWidth - document.documentElement.clientWidth,

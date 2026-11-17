@@ -3,7 +3,6 @@ import { site } from '@/content/site';
 import { linkWhatsapp } from '@/lib/whatsapp';
 import { Botao } from './Botao';
 import { CelularLoja } from './CelularLoja';
-import { Logo } from './Logo';
 import { PainelLoja } from './PainelLoja';
 import styles from './Hero.module.css';
 
@@ -20,9 +19,8 @@ export function Hero() {
           <p className={`${styles.tagline} entra`} style={posicao(0)}>
             {site.tagline}
           </p>
-          <h1 className={`${styles.logo} entra`} style={posicao(1)}>
-            <span className="sr">{site.nome}</span>
-            <Logo className={styles.logoSvg} />
+          <h1 className={`${styles.titulo} entra`} style={posicao(1)}>
+            {site.titulo}
           </h1>
           <p className={`${styles.apoio} entra`} style={posicao(2)}>
             {site.apoio}

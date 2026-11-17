@@ -42,11 +42,13 @@ try {
     reducedMotion: 'reduce',
   });
   await pagina.goto(base);
-  // Só o hero, centrado na altura do cartão: sem a barra do topo e sem as seções seguintes.
+  // A barra do topo (com a marca, que saiu do h1 do hero) e o hero, centrado no resto da altura do cartão;
+  // sem as seções seguintes.
+  const alturaTopo = await pagina.locator('header').evaluate((el) => el.offsetHeight);
   await pagina.addStyleTag({
     content: `
-      header, main > section:not(:first-child), footer { display: none !important; }
-      main > section:first-child { min-height: 756px; display: flex; flex-direction: column; justify-content: center; }
+      main > section:not(:first-child), footer { display: none !important; }
+      main > section:first-child { min-height: ${756 - alturaTopo}px; display: flex; flex-direction: column; justify-content: center; }
       main > section:first-child > div:nth-child(2) { width: 100%; }`,
   });
   await pagina.evaluate(() => document.fonts.ready);
