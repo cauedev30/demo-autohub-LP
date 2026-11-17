@@ -4,7 +4,7 @@ import { Botao } from './Botao';
 import secao from './Secao.module.css';
 import styles from './Fechamento.module.css';
 
-/** Fechamento (`#agendar`): linha vermelha curta, título, texto e os dois botões, tudo centralizado. */
+/** Fechamento (`#agendar`): linha vermelha curta, título, texto e o botão, tudo centralizado. */
 export function Fechamento() {
   return (
     <section className={`${secao.secao} ${styles.fechamento}`} id="agendar">
@@ -14,9 +14,6 @@ export function Fechamento() {
         <div className={styles.acoes}>
           <Botao variante="cheio" tamanho="grande" href={linkWhatsapp(site.acoes.agendar.mensagem)}>
             {site.acoes.agendar.rotulo}
-          </Botao>
-          <Botao variante="contorno" tamanho="grande" href={linkWhatsapp(site.acoes.whatsapp.mensagem)}>
-            {site.acoes.whatsapp.rotulo}
           </Botao>
         </div>
       </div>

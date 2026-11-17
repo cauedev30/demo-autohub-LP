@@ -243,9 +243,8 @@ for (const largura of larguras) {
           }
         }
       };
-      // "Agendar test-drive": topo, hero e fechamento; "Falar no WhatsApp": hero e fechamento
+      // "Agendar test-drive": topo, hero e fechamento (um botão só por lugar)
       await confere(site.acoes.agendar.rotulo, site.acoes.agendar.mensagem, 3);
-      await confere(site.acoes.whatsapp.rotulo, site.acoes.whatsapp.mensagem, 2);
 
       const fechamento = page.locator('#agendar');
       await expect(fechamento.getByRole('heading', { level: 2 })).toHaveText(site.fechamento.titulo);
@@ -350,7 +349,7 @@ test.describe('clique no botão com o destino #agendar (sem número configurado)
 
   test('rola até o fechamento sem trocar o hash', async ({ page }) => {
     await page.goto('/');
-    const botao = page.getByRole('link', { name: site.acoes.whatsapp.rotulo }).first();
+    const botao = page.getByRole('link', { name: site.acoes.agendar.rotulo }).nth(1);
     test.skip((await botao.getAttribute('href')) !== '#agendar', 'build com número de WhatsApp: o botão abre o WhatsApp');
     await botao.click();
     await esperaRolagemParar(page);

@@ -66,12 +66,18 @@ export type ItemSemLetraMiuda = { titulo: string; texto: string };
 
 export type Fechamento = { titulo: string; texto: string };
 
+/** Oferta das lojas fundadoras: bloco próprio depois das versões. */
+export type Fundadoras = { titulo: string; texto: string };
+
+export type Pergunta = { pergunta: string; resposta: string };
+
 export type Secoes = {
   numeros: string;
   itens: string;
   emBreve: string;
   versoes: string;
   semLetraMiuda: string;
+  perguntas: string;
 };
 
 export type Celular = {
@@ -112,9 +118,11 @@ export type NaoEncontrada = { titulo: string; texto: string; voltar: string };
 export type Site = {
   nome: string;
   tagline: string;
+  /** Promessa do hero, no h1 (o nome fica na logo do topo). */
+  titulo: string;
   apoio: string;
   nav: LinkNav[];
-  acoes: { agendar: Acao; whatsapp: Acao };
+  acoes: { agendar: Acao };
   painel: Painel;
   celular: Celular;
   secoes: Secoes;
@@ -124,6 +132,9 @@ export type Site = {
   emBreve: ItemDeSerie[];
   versoes: Versoes;
   semLetraMiuda: ItemSemLetraMiuda[];
+  fundadoras: Fundadoras;
+  /** Perguntas frequentes, a objeção mais comum primeiro. */
+  perguntas: Pergunta[];
   fechamento: Fechamento;
   rodape: string;
   seo: Seo;

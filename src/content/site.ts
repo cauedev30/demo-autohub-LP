@@ -7,8 +7,9 @@ import type { Site } from './tipos';
 export const site: Site = {
   nome: 'AutoHub',
   tagline: 'Sistema de gestão para revendas de seminovos',
+  titulo: 'Veja quanto o seu pátio vale e quanto vai sobrar de lucro.',
   apoio:
-    'Estoque, clientes, agenda, vendas e metas ficam no mesmo sistema, e o site da sua loja vem junto. No painel, você vê quanto o pátio vale e quanto vai sobrar de lucro.',
+    'Estoque, clientes, agenda, vendas e metas ficam no mesmo sistema, e o site da sua loja vem junto.',
 
   nav: [
     { rotulo: 'Itens de série', href: '#itens' },
@@ -20,11 +21,6 @@ export const site: Site = {
       rotulo: 'Agendar test-drive',
       ancora: '#agendar',
       mensagem: 'Oi! Quero agendar um test-drive do AutoHub.',
-    },
-    whatsapp: {
-      rotulo: 'Falar no WhatsApp',
-      ancora: '#agendar',
-      mensagem: 'Oi! Quero conhecer o AutoHub.',
     },
   },
 
@@ -64,6 +60,7 @@ export const site: Site = {
     emBreve: 'Em breve',
     versoes: 'Versões',
     semLetraMiuda: 'Sem letra miúda',
+    perguntas: 'Perguntas frequentes',
   },
 
   numeros: [
@@ -146,7 +143,7 @@ export const site: Site = {
       loja: { valor: 'R$ 299', detalhe: 'por mês, ou R$ 249 por mês no plano anual' },
       lojaPlus: { valor: 'R$ 449', detalhe: 'por mês, ou R$ 374 por mês no plano anual' },
     },
-    nota: 'Usuários ilimitados e implantação presencial nas duas versões. As 10 primeiras lojas entram como fundadoras: R$ 199 por mês, travado por 12 meses, em troca de uma conversa a cada 15 dias, um depoimento e uma indicação.',
+    nota: 'As duas versões têm usuários ilimitados e implantação na sua loja. Com mais de 80 carros, fale com a gente para montar o plano.',
   },
 
   semLetraMiuda: [
@@ -155,6 +152,55 @@ export const site: Site = {
     {
       titulo: 'Quem atende é quem fez',
       texto: 'Os fundadores vão até a sua loja fazer a implantação e são eles que respondem o suporte no WhatsApp.',
+    },
+  ],
+
+  fundadoras: {
+    titulo: '10 vagas de loja fundadora',
+    texto:
+      'As 10 primeiras lojas pagam R$ 199 por mês, com o preço travado por 12 meses. Em troca, pedimos uma conversa a cada 15 dias, um depoimento e uma indicação.',
+  },
+
+  perguntas: [
+    {
+      pergunta: 'Tem fidelidade ou taxa de adesão?',
+      resposta:
+        'Nenhuma das duas. Para cancelar, basta mandar uma mensagem.',
+    },
+    {
+      pergunta: 'Quanto custa?',
+      resposta:
+        'No Loja, são R$ 299 por mês até 30 carros (R$ 249 por mês no plano anual), e no Loja+, R$ 449 por mês até 80 carros (R$ 374 por mês no plano anual), com usuários ilimitados nos dois. Acima de 80 carros, a gente conversa. As 10 primeiras lojas pagam R$ 199 por mês, travado por 12 meses, em troca de uma conversa a cada 15 dias, um depoimento e uma indicação.',
+    },
+    {
+      pergunta: 'Ele publica meus carros na OLX, na Webmotors ou na Mobiauto?',
+      resposta:
+        'Hoje não. O AutoHub não publica anúncio em portal, então você continua anunciando como já faz. Em breve, no Loja+, ele vai mostrar de qual portal veio cada cliente e quanto custou cada venda.',
+    },
+    {
+      pergunta: 'Depois que eu assinar, quem me atende?',
+      resposta:
+        'Os próprios fundadores, pelo WhatsApp. São as mesmas pessoas que fazem a implantação dentro da sua loja.',
+    },
+    {
+      pergunta: 'Hoje eu controlo tudo no caderno, na planilha ou em outro sistema. Como faço para começar?',
+      resposta:
+        'A gente vai até a sua loja e, em um dia, deixa o sistema rodando com você e a sua equipe. Se você usa outro sistema, só cancele o antigo depois que o AutoHub estiver rodando.',
+    },
+    {
+      pergunta: 'Funciona no celular? Preciso instalar alguma coisa?',
+      resposta:
+        'Funciona no navegador do computador e do celular, sem instalar nada. Basta ter internet, do wi-fi da loja ou do 4G do celular.',
+    },
+    {
+      pergunta: 'Os dados da minha loja ficam seguros? E se eu quiser sair?',
+      resposta:
+        'Os dados são seus. Cada pessoa da equipe entra com o próprio acesso, e uma loja não vê os dados de outra. Se um dia sair, a gente entrega os seus dados para você.',
+    },
+    {
+      pergunta: 'Ele emite nota fiscal e faz o RENAVE?',
+      resposta:
+        'Não. Nota fiscal e RENAVE continuam com o despachante ou a integradora que você já usa, e o AutoHub cuida do estoque, dos clientes, das vendas e da meta do mês.',
     },
   ],
 

@@ -31,9 +31,6 @@ export function Hero() {
             <Botao variante="cheio" tamanho="grande" href={linkWhatsapp(site.acoes.agendar.mensagem)}>
               {site.acoes.agendar.rotulo}
             </Botao>
-            <Botao variante="contorno" tamanho="grande" href={linkWhatsapp(site.acoes.whatsapp.mensagem)}>
-              {site.acoes.whatsapp.rotulo}
-            </Botao>
           </div>
         </div>
 

@@ -24,8 +24,7 @@ describe('conteúdo da landing', () => {
       ...site.nav.map((l) => l.rotulo),
       site.acoes.agendar.rotulo,
       site.acoes.agendar.mensagem,
-      site.acoes.whatsapp.rotulo,
-      site.acoes.whatsapp.mensagem,
+      site.titulo,
       ...site.painel.metricas.flatMap((m) => [m.rotulo, m.valor]),
       ...site.painel.idade.map((f) => f.rotulo),
       ...Object.values(site.secoes),
@@ -42,6 +41,9 @@ describe('conteúdo da landing', () => {
       site.versoes.preco.lojaPlus.valor,
       site.versoes.nota,
       ...site.semLetraMiuda.flatMap((i) => [i.titulo, i.texto]),
+      site.fundadoras.titulo,
+      site.fundadoras.texto,
+      ...site.perguntas.flatMap((p) => [p.pergunta, p.resposta]),
       site.fechamento.titulo,
       site.fechamento.texto,
       site.rodape,
@@ -57,6 +59,7 @@ describe('conteúdo da landing', () => {
     expect(site.itens).toHaveLength(6);
     expect(site.emBreve).toHaveLength(4);
     expect(site.semLetraMiuda).toHaveLength(3);
+    expect(site.perguntas.length).toBeGreaterThanOrEqual(6);
   });
 
   it('cada linha da tabela de versões tem os dois valores', () => {

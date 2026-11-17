@@ -64,10 +64,9 @@ for (const largura of larguras) {
           expect(await link.getAttribute('target')).toBeNull();
         }
       };
-      // "Agendar test-drive": topo (0) e hero (1); "Falar no WhatsApp": hero (0)
+      // "Agendar test-drive": topo (0) e hero (1)
       await confere(site.acoes.agendar.rotulo, site.acoes.agendar.mensagem, 0);
       await confere(site.acoes.agendar.rotulo, site.acoes.agendar.mensagem, 1);
-      await confere(site.acoes.whatsapp.rotulo, site.acoes.whatsapp.mensagem, 0);
     });
 
     test('os links de texto do topo só aparecem a partir de 561px', async ({ page }) => {
