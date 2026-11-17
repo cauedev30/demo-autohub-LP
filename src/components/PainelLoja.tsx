@@ -11,7 +11,7 @@ const classeDoTom: Record<TomIdade, string> = {
   parado: styles.parado,
 };
 
-/** Painel "Loja agora": três métricas, a barra de idade do estoque e a legenda. Tudo vem de `site.painel`. */
+/** Painel "Sua loja agora": três métricas, a barra de idade do estoque e a legenda. Tudo vem de `site.painel`. */
 export function PainelLoja() {
   const { painel, acessibilidade } = site;
   return (

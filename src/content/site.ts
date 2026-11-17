@@ -25,32 +25,32 @@ export const site: Site = {
   },
 
   painel: {
-    titulo: 'Loja agora',
-    nota: 'Loja de demonstração, 30 carros',
-    total: 30,
+    titulo: 'Sua loja agora',
+    nota: 'Maré Veículos, loja de demonstração, 22 carros',
+    total: 22,
     idadeDescricao: 'carros por tempo no pátio',
     metricas: [
-      { rotulo: 'Investido no pátio', valor: 'R$ 1.184.500' },
-      { rotulo: 'Vale na venda', valor: 'R$ 1.372.900' },
-      { rotulo: 'Lucro esperado', valor: 'R$ 188.400' },
+      { rotulo: 'Investido no estoque', valor: 'R$ 1.729.470' },
+      { rotulo: 'Vale na venda', valor: 'R$ 1.993.780' },
+      { rotulo: 'Lucro esperado', valor: 'R$ 212.310' },
     ],
     idade: [
-      { n: 20, rotulo: '20 carros até 30 dias', tom: 'novo' },
+      { n: 10, rotulo: '10 carros até 30 dias', tom: 'novo' },
       { n: 6, rotulo: '6 de 31 a 60', tom: 'medio' },
-      { n: 3, rotulo: '3 de 61 a 90', tom: 'velho' },
-      { n: 1, rotulo: '1 há mais de 90', tom: 'parado' },
+      { n: 4, rotulo: '4 de 61 a 90', tom: 'velho' },
+      { n: 2, rotulo: '2 há mais de 90', tom: 'parado' },
     ],
   },
 
   celular: {
-    marca: 'Brisa',
-    sufixo: 'Seminovos',
+    marca: 'Maré',
+    sufixo: 'Veículos',
     titulo: 'Seminovos em João Pessoa',
-    apoio: '30 carros no pátio',
+    apoio: '22 carros no pátio',
     filtros: ['Todos', 'SUV', 'Sedã'],
     carros: [
-      { nome: 'Sedã 2.0', preco: 'R$ 98.900' },
-      { nome: 'SUV 1.6', preco: 'R$ 119.900' },
+      { nome: 'Corolla XEi', preco: 'R$ 109.990' },
+      { nome: 'HR-V EX', preco: 'R$ 96.990' },
     ],
   },
 
@@ -74,7 +74,7 @@ export const site: Site = {
     {
       titulo: 'Dinheiro no pátio',
       texto:
-        'Você vê quanto investiu, quanto o pátio vale na venda e quanto deve sobrar de lucro. Cada carro mostra há quantos dias está parado.',
+        'Você vê quanto investiu, quanto o pátio vale na venda e quanto deve sobrar de lucro. Cada carro mostra há quantos dias está parado e quanto esse dinheiro parado custa por dia.',
     },
     {
       titulo: 'Desconto com limite',
@@ -219,7 +219,7 @@ export const site: Site = {
       'Estoque, clientes, agenda, vendas e metas num só sistema, com o site da sua loja. O dono vê quanto o pátio vale e quanto vai lucrar.',
     nomeSite: 'AutoHub',
     imagemAlt:
-      'AutoHub, sistema de gestão para revendas de seminovos, e o painel Loja agora com o dinheiro investido no pátio.',
+      'AutoHub, sistema de gestão para revendas de seminovos, e o painel Sua loja agora com o dinheiro investido no estoque.',
   },
 
   acessibilidade: {
