@@ -105,6 +105,11 @@ export const site: Site = {
         'Você escolhe a regra: valor fixo por carro, % da venda ou % do lucro. A comissão de cada venda sai calculada na hora, e o vendedor vê só as dele.',
     },
     {
+      titulo: 'Qual portal traz venda',
+      texto:
+        'Cada cliente fica marcado com o canal de onde veio, como OLX, Webmotors ou Instagram. O relatório mostra quanto cada canal custou por cliente e por venda. Vem no Loja+.',
+    },
+    {
       titulo: 'Site com a cara da sua loja',
       texto: 'O site mostra o seu estoque com fotos e a ficha de cada carro, e cada anúncio leva o WhatsApp dos vendedores.',
     },
@@ -114,10 +119,6 @@ export const site: Site = {
     {
       titulo: 'Cliente do site direto no funil',
       texto: 'Quem chama pelo site entra no funil na hora, e o vendedor recebe o aviso no celular.',
-    },
-    {
-      titulo: 'Qual portal traz venda',
-      texto: 'Cada cliente fica marcado com o portal de onde veio, e você vê quanto cada portal custou por carro vendido.',
     },
   ],
 
@@ -135,8 +136,8 @@ export const site: Site = {
       { rotulo: 'Painel do dono', loja: true, lojaPlus: true },
       { rotulo: 'Equipe com dono, gerente e vendedor', loja: true, lojaPlus: true },
       { rotulo: 'Comissão por vendedor', loja: true, lojaPlus: true },
-      { rotulo: 'Origem de cada cliente', loja: false, lojaPlus: 'Em breve' },
-      { rotulo: 'Custo por venda de cada portal', loja: false, lojaPlus: 'Em breve' },
+      { rotulo: 'Origem de cada cliente', loja: false, lojaPlus: true },
+      { rotulo: 'Custo por venda de cada portal', loja: false, lojaPlus: true },
       { rotulo: 'Relatório mensal para o dono', loja: false, lojaPlus: true },
       { rotulo: 'Tamanho do pátio', loja: 'Até 30 carros', lojaPlus: 'Até 80 carros' },
     ],
@@ -177,7 +178,7 @@ export const site: Site = {
     {
       pergunta: 'Ele publica meus carros na OLX, na Webmotors ou na Mobiauto?',
       resposta:
-        'Hoje não. O AutoHub não publica anúncio em portal, então você continua anunciando como já faz. Em breve, no Loja+, ele vai mostrar de qual portal veio cada cliente e quanto custou cada venda.',
+        'Hoje não. O AutoHub não publica anúncio em portal, então você continua anunciando como já faz. No Loja+, ele mostra de qual portal veio cada cliente e quanto custou cada venda.',
     },
     {
       pergunta: 'Depois que eu assinar, quem me atende?',
