@@ -1,7 +1,7 @@
 import { site } from '@/content/site';
 import styles from './Numeros.module.css';
 
-/** Faixa de números logo abaixo do hero: "1 dia", "Zero", "Ilimitados", "R$ 299". Sem título visível. */
+/** Faixa de números logo abaixo do hero: "1 dia", "R$ 0", "Equipe toda", "R$ 299". Sem título visível. */
 export function Numeros() {
   return (
     <section className={`${styles.numeros} wrap`} aria-label={site.secoes.numeros}>

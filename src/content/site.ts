@@ -8,7 +8,7 @@ export const site: Site = {
   nome: 'AutoHub',
   tagline: 'Sistema de gestão para revendas de seminovos',
   apoio:
-    'Estoque, clientes, agenda, vendas e metas num só sistema, com o site da sua loja. O dono vê quanto o pátio vale e quanto vai lucrar.',
+    'Estoque, clientes, agenda, vendas e metas ficam no mesmo sistema, e o site da sua loja vem junto. No painel, você vê quanto o pátio vale e quanto vai sobrar de lucro.',
 
   nav: [
     { rotulo: 'Itens de série', href: '#itens' },
@@ -67,9 +67,9 @@ export const site: Site = {
   },
 
   numeros: [
-    { valor: '1 dia', rotulo: 'para implantar, dentro da sua loja' },
-    { valor: 'Zero', rotulo: 'adesão e fidelidade' },
-    { valor: 'Ilimitados', rotulo: 'usuários por loja' },
+    { valor: '1 dia', rotulo: 'de implantação, feita na sua loja' },
+    { valor: 'R$ 0', rotulo: 'de adesão, e sem fidelidade' },
+    { valor: 'Equipe toda', rotulo: 'sem cobrança por usuário' },
     { valor: 'R$ 299', rotulo: 'por mês, até 30 carros' },
   ],
 
@@ -77,36 +77,36 @@ export const site: Site = {
     {
       titulo: 'Dinheiro no pátio',
       texto:
-        'Quanto você investiu, quanto o pátio vale na venda, o lucro esperado e há quantos dias cada carro está parado.',
+        'Você vê quanto investiu, quanto o pátio vale na venda e quanto deve sobrar de lucro. Cada carro mostra há quantos dias está parado.',
     },
     {
       titulo: 'Desconto com limite',
-      texto: 'Você define a margem de cada carro. O vendedor só dá desconto até o mínimo à vista que você liberou.',
+      texto: 'Você define a margem de cada carro, e o vendedor só dá desconto até o mínimo à vista que você liberou.',
     },
     {
       titulo: 'Funil de clientes',
       texto:
-        'Cada cliente num quadro, de lead novo a negociando. Arrastou para "Vendeu", a venda fica com o valor e a forma de pagamento.',
+        'Cada cliente vira um cartão no quadro, do primeiro contato até a negociação. Arrastou para "Vendeu", a venda fica registrada com o valor e a forma de pagamento.',
     },
     {
       titulo: 'Nenhum retorno esquecido',
-      texto: 'A agenda junta as visitas e os retornos do dia e mostra quem ficou atrasado.',
+      texto: 'A agenda reúne as visitas e os retornos do dia e destaca os retornos atrasados.',
     },
     {
-      titulo: 'A meta do mês, em ritmo',
+      titulo: 'Meta do mês',
       texto:
-        'Faturamento, lucro, margem e ticket médio do mês. A meta mostra quantas vendas faltam e o ritmo para chegar lá.',
+        'Faturamento, lucro, margem e ticket médio do mês num lugar só. A meta diz quantas vendas faltam e em que ritmo, por exemplo uma venda a cada 3 dias.',
     },
     {
       titulo: 'Site com a cara da sua loja',
-      texto: 'O seu estoque na vitrine, com fotos e ficha de cada carro, e o WhatsApp dos vendedores em cada anúncio.',
+      texto: 'O site mostra o seu estoque com fotos e a ficha de cada carro, e cada anúncio leva o WhatsApp dos vendedores.',
     },
   ],
 
   emBreve: [
     {
       titulo: 'Comissão por vendedor',
-      texto: 'Cada venda guarda quem vendeu, e a comissão sai calculada no fim do mês.',
+      texto: 'Cada venda registra quem vendeu, e no fim do mês a comissão já sai calculada.',
     },
     {
       titulo: 'Custo só para o dono',
@@ -114,11 +114,11 @@ export const site: Site = {
     },
     {
       titulo: 'Cliente do site direto no funil',
-      texto: 'Quem chama pelo site entra na hora na lista, e o vendedor recebe o aviso no celular.',
+      texto: 'Quem chama pelo site entra no funil na hora, e o vendedor recebe o aviso no celular.',
     },
     {
       titulo: 'Qual portal traz venda',
-      texto: 'A origem de cada cliente ligada à venda e o custo por venda de cada portal.',
+      texto: 'Cada cliente fica marcado com o portal de onde veio, e você vê quanto cada portal custou por carro vendido.',
     },
   ],
 
@@ -143,24 +143,24 @@ export const site: Site = {
     ],
     preco: {
       rotulo: 'Preço',
-      loja: { valor: 'R$ 299', detalhe: 'por mês, ou R$ 249 no anual' },
-      lojaPlus: { valor: 'R$ 449', detalhe: 'por mês, ou R$ 374 no anual' },
+      loja: { valor: 'R$ 299', detalhe: 'por mês, ou R$ 249 por mês no plano anual' },
+      lojaPlus: { valor: 'R$ 449', detalhe: 'por mês, ou R$ 374 por mês no plano anual' },
     },
     nota: 'Usuários ilimitados e implantação presencial nas duas versões. As 10 primeiras lojas entram como fundadoras: R$ 199 por mês, travado por 12 meses, em troca de uma conversa a cada 15 dias, um depoimento e uma indicação.',
   },
 
   semLetraMiuda: [
-    { titulo: 'Cancela por mensagem', texto: 'Não tem adesão nem fidelidade.' },
+    { titulo: 'Cancela por mensagem', texto: 'Sem adesão e sem fidelidade. Para sair, basta mandar uma mensagem.' },
     { titulo: 'Os dados são seus', texto: 'Se um dia sair, você leva tudo em planilha.' },
     {
       titulo: 'Quem atende é quem fez',
-      texto: 'Implantação na sua loja em um dia e suporte pelo WhatsApp.',
+      texto: 'Os fundadores vão até a sua loja fazer a implantação e são eles que respondem o suporte no WhatsApp.',
     },
   ],
 
   fechamento: {
     titulo: 'Agende o seu test-drive.',
-    texto: 'São 15 minutos, na sua loja ou por vídeo, em João Pessoa, Cabedelo e Campina Grande.',
+    texto: 'São 15 minutos. Vamos até a sua loja em João Pessoa, Cabedelo ou Campina Grande, ou mostramos por vídeo.',
   },
 
   rodape: 'AutoHub. Feito em João Pessoa, Paraíba.',

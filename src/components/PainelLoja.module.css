@@ -157,6 +157,8 @@
 @media (max-width: 860px) {
   .painel {
     width: 100%;
+    /* sem o celular ao lado, o reflexo vira legenda de cabeça para baixo e parece defeito */
+    -webkit-box-reflect: none;
   }
 }
 
