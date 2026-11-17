@@ -14,6 +14,8 @@ for (const largura of larguras) {
       await page.goto('/');
       await page.evaluate(() => document.fonts.ready);
       await page.evaluate(() => Promise.all(document.getAnimations().map((a) => a.finished)).then(() => undefined));
+      // as respostas das perguntas entram na medida abertas: fechadas, o Chrome ainda devolve caixas para o texto escondido
+      await page.evaluate(() => document.querySelectorAll('details').forEach((d) => (d.open = true)));
 
       const achados = await page.evaluate(() => {
         type Caixa = { x: number; y: number; w: number; h: number; rotulo: string; no: Node };
@@ -71,7 +73,7 @@ for (const largura of larguras) {
       await page.goto('/');
       await page.evaluate(() => document.fonts.ready);
       const alvos = await page.evaluate(() =>
-        [...document.querySelectorAll<HTMLElement>('a[href], button, [tabindex="0"]')]
+        [...document.querySelectorAll<HTMLElement>('a[href], button, summary, [tabindex="0"]')]
           .map((el) => ({ el, r: el.getBoundingClientRect() }))
           // o skip link fica acima da janela até receber o foco
           .filter(({ r }) => r.width > 1 && r.height > 1 && r.bottom > 0)

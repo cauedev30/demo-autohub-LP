@@ -57,15 +57,15 @@ for (const largura of larguras) {
     test('todo link e botão visível tem pelo menos 44px de altura', async ({ page }) => {
       await page.goto('/');
       let medidos = 0;
-      for (const controle of await page.locator('a, button').all()) {
+      for (const controle of await page.locator('a, button, summary').all()) {
         if (!(await controle.isVisible())) continue;
         const caixa = await controle.boundingBox();
         const nome = (await controle.textContent())?.trim();
         expect(caixa?.height ?? 0, `altura de "${nome}"`).toBeGreaterThanOrEqual(44);
         medidos++;
       }
-      // marca, botão do topo, dois do hero e dois do fechamento aparecem em todas as larguras
-      expect(medidos).toBeGreaterThanOrEqual(6);
+      // marca, botão do topo, hero, fundadoras, fechamento e as perguntas aparecem em todas as larguras
+      expect(medidos).toBeGreaterThanOrEqual(6 + site.perguntas.length);
     });
 
     test('os títulos seguem h1, h2 e h3 sem pular nível', async ({ page }) => {
@@ -83,16 +83,18 @@ for (const largura of larguras) {
       const h2 = titulos.filter((t) => t.nivel === 2).map((t) => t.texto);
       expect(h2).toEqual([
         site.secoes.itens,
-        site.secoes.emBreve,
         site.secoes.versoes,
+        site.fundadoras.titulo,
         site.secoes.semLetraMiuda,
+        site.secoes.emBreve,
+        site.secoes.perguntas,
         site.fechamento.titulo,
       ]);
       const h3 = titulos.filter((t) => t.nivel === 3).map((t) => t.texto);
       expect(h3).toEqual([
         ...site.itens.map((i) => i.titulo),
-        ...site.emBreve.map((i) => i.titulo),
         ...site.semLetraMiuda.map((i) => i.titulo),
+        ...site.emBreve.map((i) => i.titulo),
       ]);
     });
 
@@ -243,14 +245,61 @@ for (const largura of larguras) {
           }
         }
       };
-      // "Agendar test-drive": topo, hero e fechamento (um botão só por lugar)
-      await confere(site.acoes.agendar.rotulo, site.acoes.agendar.mensagem, 3);
+      // "Agendar test-drive": topo, hero, fundadoras e fechamento (um botão só por lugar)
+      await confere(site.acoes.agendar.rotulo, site.acoes.agendar.mensagem, 4);
 
       const fechamento = page.locator('#agendar');
       await expect(fechamento.getByRole('heading', { level: 2 })).toHaveText(site.fechamento.titulo);
       await expect(fechamento).toContainText(site.fechamento.texto);
-      await expect(fechamento.getByRole('link')).toHaveCount(2);
+      await expect(fechamento.getByRole('link')).toHaveCount(1);
       await expect(page.getByRole('contentinfo')).toHaveText(site.rodape);
+    });
+
+    test('fundadoras: título, texto e o botão de agendar, num bloco destacado', async ({ page }) => {
+      await page.goto('/');
+      const bloco = page.locator('#fundadoras');
+      await expect(bloco.getByRole('heading', { level: 2 })).toHaveText(site.fundadoras.titulo);
+      await expect(bloco).toContainText(site.fundadoras.texto);
+      const link = bloco.getByRole('link', { name: site.acoes.agendar.rotulo });
+      await expect(link).toHaveCount(1);
+      const href = (await link.getAttribute('href')) ?? '';
+      if (href.startsWith('https://wa.me/')) {
+        expect(href).toContain(`text=${encodeURIComponent(site.acoes.agendar.mensagem)}`);
+      } else {
+        expect(href).toBe('#agendar');
+      }
+      // o destaque é um painel com borda, diferente das seções lisas
+      const borda = await bloco.getByRole('heading', { level: 2 }).evaluate((h) => {
+        for (let el = h.parentElement; el && el.id !== 'fundadoras'; el = el.parentElement) {
+          const css = getComputedStyle(el);
+          if (css.borderTopStyle !== 'none' && parseFloat(css.borderTopWidth) > 0 && css.borderLeftStyle !== 'none') return true;
+        }
+        return false;
+      });
+      expect(borda).toBe(true);
+    });
+
+    test('perguntas: todas aparecem e cada resposta abre pelo clique e pelo Enter', async ({ page }) => {
+      await page.goto('/');
+      const secao = page.locator('#perguntas');
+      await expect(secao.getByRole('heading', { level: 2 })).toHaveText(site.secoes.perguntas);
+      const itens = secao.locator('details');
+      await expect(itens).toHaveCount(site.perguntas.length);
+      for (const [i, item] of site.perguntas.entries()) {
+        await expect(itens.nth(i).locator('summary')).toHaveText(item.pergunta);
+        await expect(itens.nth(i).getByText(item.resposta)).toBeHidden();
+      }
+
+      const primeira = itens.first();
+      await primeira.locator('summary').click();
+      await expect(primeira.getByText(site.perguntas[0].resposta)).toBeVisible();
+
+      const segunda = itens.nth(1);
+      await segunda.locator('summary').focus();
+      await page.keyboard.press('Enter');
+      await expect(segunda.getByText(site.perguntas[1].resposta)).toBeVisible();
+      await page.keyboard.press('Enter');
+      await expect(segunda.getByText(site.perguntas[1].resposta)).toBeHidden();
     });
 
     test('o vermelho aparece só na faixa "parado", no fio do hero e na linha do fechamento', async ({ page }) => {
@@ -377,7 +426,15 @@ test.describe('prefers-reduced-motion: reduce', () => {
         .map((el) => `${el.tagName}.${el.className}`),
     );
     expect(escondidos).toEqual([]);
-    for (const titulo of [site.secoes.itens, site.secoes.emBreve, site.secoes.versoes, site.secoes.semLetraMiuda, site.fechamento.titulo]) {
+    for (const titulo of [
+      site.secoes.itens,
+      site.secoes.versoes,
+      site.fundadoras.titulo,
+      site.secoes.semLetraMiuda,
+      site.secoes.emBreve,
+      site.secoes.perguntas,
+      site.fechamento.titulo,
+    ]) {
       await expect(page.getByRole('heading', { level: 2, name: titulo })).toBeVisible();
     }
 

@@ -171,7 +171,7 @@ for (const largura of larguras) {
       await abre(page);
       const total = await page.evaluate(
         () =>
-          [...document.querySelectorAll<HTMLElement>('a[href], button, [tabindex]')].filter(
+          [...document.querySelectorAll<HTMLElement>('a[href], button, summary, [tabindex]')].filter(
             (el) => el.tabIndex >= 0 && el.getClientRects().length > 0 && getComputedStyle(el).visibility !== 'hidden',
           ).length,
       );

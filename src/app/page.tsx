@@ -1,8 +1,10 @@
 import { EmBreve } from '@/components/EmBreve';
 import { Fechamento } from '@/components/Fechamento';
+import { Fundadoras } from '@/components/Fundadoras';
 import { Hero } from '@/components/Hero';
 import { ItensDeSerie } from '@/components/ItensDeSerie';
 import { Numeros } from '@/components/Numeros';
+import { Perguntas } from '@/components/Perguntas';
 import { Rodape } from '@/components/Rodape';
 import { RolagemSuave } from '@/components/RolagemSuave';
 import { SemLetraMiuda } from '@/components/SemLetraMiuda';
@@ -17,9 +19,11 @@ export default function Home() {
         <Hero />
         <Numeros />
         <ItensDeSerie />
-        <EmBreve />
         <Versoes />
+        <Fundadoras />
         <SemLetraMiuda />
+        <EmBreve />
+        <Perguntas />
         <Fechamento />
       </main>
       <Rodape />
