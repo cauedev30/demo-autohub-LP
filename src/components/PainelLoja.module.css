@@ -9,7 +9,14 @@
   background: var(--painel);
   color: var(--painel-fg);
   box-shadow: 0 40px 60px -44px rgba(255, 255, 255, 0.18);
-  -webkit-box-reflect: below 0 linear-gradient(transparent 70%, rgba(0, 0, 0, 0.22));
+}
+
+/* reflexo só com o celular ao lado: sozinho no celular, a legenda aparece de cabeça para baixo e parece defeito
+   (o Chrome ignora -webkit-box-reflect: none, então o reflexo entra só acima de 860px) */
+@media (min-width: 861px) {
+  .painel {
+    -webkit-box-reflect: below 0 linear-gradient(transparent 70%, rgba(0, 0, 0, 0.22));
+  }
 }
 
 /* brilho que passa uma vez */
@@ -157,8 +164,6 @@
 @media (max-width: 860px) {
   .painel {
     width: 100%;
-    /* sem o celular ao lado, o reflexo vira legenda de cabeça para baixo e parece defeito */
-    -webkit-box-reflect: none;
   }
 }
 
