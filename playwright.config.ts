@@ -1,6 +1,6 @@
 import { defineConfig } from '@playwright/test';
 
-const PORTA = 4173;
+const PORTA = Number(process.env.PORTA_E2E ?? 4173);
 
 // Usa o Chrome já instalado na máquina (channel 'chrome'); nenhum navegador é baixado.
 // O servidor estático sobe a pasta out/ (rode "npm run build" antes).
