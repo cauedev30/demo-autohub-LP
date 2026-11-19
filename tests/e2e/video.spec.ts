@@ -133,6 +133,17 @@ test.describe('seção Por que o AutoHub', () => {
     expect((await estado(page)).mudo).toBe(true);
   });
 
+  test('clicar no vídeo mudo liga o som, como o botão', async ({ page }) => {
+    await page.goto('/');
+    await rolaAteVideo(page);
+    await expect.poll(async () => (await estado(page)).tempo, { timeout: 10_000 }).toBeGreaterThan(1);
+    await page.locator('video').click();
+    const logo = await estado(page);
+    expect(logo).toMatchObject({ mudo: false, controles: true, loop: false });
+    expect(logo.tempo).toBeLessThan(1);
+    await expect(page.getByRole('button', { name: site.porQue.comSom })).toBeHidden();
+  });
+
   test('autoplay recusado: a capa e o botão ficam, sem erro na página', async ({ page }) => {
     const erros: string[] = [];
     page.on('pageerror', (erro) => erros.push(erro.message));
@@ -162,7 +173,15 @@ test.describe('vídeo com movimento reduzido', () => {
 });
 
 test.describe('vídeo no celular', () => {
-  test.use({ viewport: { width: 390, height: 844 } });
+  test.use({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });
+
+  test('no celular, tocar no vídeo mudo liga o som', async ({ page }) => {
+    await page.goto('/');
+    await rolaAteVideo(page);
+    await expect.poll(async () => (await estado(page)).tempo, { timeout: 10_000 }).toBeGreaterThan(0.3);
+    await page.locator('video').tap();
+    expect(await estado(page)).toMatchObject({ mudo: false, controles: true });
+  });
 
   test('nenhum vídeo baixa antes de a seção aparecer; no celular vem o de 720p', async ({ page }) => {
     const videos: string[] = [];
@@ -176,5 +195,17 @@ test.describe('vídeo no celular', () => {
     await expect.poll(async () => (await estado(page)).tempo, { timeout: 10_000 }).toBeGreaterThan(0.3);
     expect((await estado(page)).fonte).toMatch(/-720\.mp4$/);
     expect(videos.every((url) => url.endsWith('-720.mp4'))).toBe(true);
+  });
+});
+
+test.describe('vídeo no tablet deitado', () => {
+  // largo como um computador, mas no 4G: o de 1080p (2 Mbps) trava em rede fraca, o de 720p (0,9 Mbps) não
+  test.use({ viewport: { width: 1280, height: 800 }, hasTouch: true, isMobile: true });
+
+  test('tela de toque recebe o de 720p mesmo larga', async ({ page }) => {
+    await page.goto('/');
+    await rolaAteVideo(page);
+    await expect.poll(async () => (await estado(page)).tempo, { timeout: 10_000 }).toBeGreaterThan(0.3);
+    expect((await estado(page)).fonte).toMatch(/-720\.mp4$/);
   });
 });

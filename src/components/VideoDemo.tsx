@@ -18,7 +18,7 @@ type Props = {
 /**
  * O vídeo do pátio: toca mudo, em loop, enquanto metade dele está na tela, e nada baixa antes disso (preload="none").
  * "Assistir com som" (embaixo, para não cobrir os números do filme) recomeça do início com som e controles;
- * "Pausar" para o loop mudo. Com movimento reduzido, só toca pelo botão.
+ * (tocar no vídeo faz o mesmo); "Pausar" para o loop mudo. Com movimento reduzido, só toca pelo botão.
  */
 export function VideoDemo({ comSom, pausar, continuar, legenda, descricao, children }: Props) {
   const ref = useRef<HTMLVideoElement>(null);
@@ -80,8 +80,11 @@ export function VideoDemo({ comSom, pausar, continuar, legenda, descricao, child
           aria-describedby={descricao}
           onPlay={() => setTocando(true)}
           onPause={() => setTocando(false)}
+          // no celular a pessoa toca no vídeo esperando o som; depois dele, os controles nativos cuidam do toque
+          onClick={comAudio ? undefined : ouvir}
         >
-          <source src="/video/autohub-demo-720.mp4" type="video/mp4" media="(max-width: 860px)" />
+          {/* tela de toque leva o de 720p mesmo larga (tablet deitado): no 4G fraco o de 1080p trava */}
+          <source src="/video/autohub-demo-720.mp4" type="video/mp4" media="(max-width: 860px), (pointer: coarse)" />
           <source src="/video/autohub-demo-1080.mp4" type="video/mp4" />
           <track kind="captions" src="/video/autohub-demo.vtt" srcLang="pt-BR" label={legenda} />
         </video>

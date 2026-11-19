@@ -36,7 +36,7 @@ npm run dev                  # http://localhost:3000
 - Componentes em `src/components/`, cada um com o seu `Componente.module.css` (CSS Modules, portado da direção Noite);
   só os tokens, o `.wrap`, o `.sr`, o `.pular` e a entrada `.entra` ficam em `globals.css`. `Secao.module.css` é a base compartilhada das seções com título;
   `RolagemSuave` (cliente, sem markup) rola até as âncoras sem trocar o hash.
-- Vídeo da seção "Por que o AutoHub" (`PorQue` e `VideoDemo`): `public/video/`, com 1080p, 720p (celular), capa e
+- Vídeo da seção "Por que o AutoHub" (`PorQue` e `VideoDemo`): `public/video/`, com 1080p, 720p (celular e tablet), capa e
   legenda. É gerado no projeto do vídeo, fora deste repo: trocar o vídeo é trocar os quatro arquivos com os mesmos nomes.
   O servidor precisa responder a Range (206), ou o iPhone não toca o vídeo: a Vercel e o Caddy respondem; o Workers
   Static Assets do Cloudflare não (antes de publicar lá, servir `/video/` por um Worker que responda a Range).
