@@ -14,7 +14,13 @@ export function PorQue() {
         <h2 className={`${secao.titulo} ${styles.titulo}`} id="por-que-titulo">
           {site.porQue.titulo}
         </h2>
-        <VideoDemo comSom={site.porQue.comSom} legenda={site.porQue.legenda} descricao="por-que-nota">
+        <VideoDemo
+          comSom={site.porQue.comSom}
+          pausar={site.porQue.pausar}
+          continuar={site.porQue.continuar}
+          legenda={site.porQue.legenda}
+          descricao="por-que-nota"
+        >
           <p className={styles.nota} id="por-que-nota">
             {site.porQue.nota}
           </p>

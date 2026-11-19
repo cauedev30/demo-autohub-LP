@@ -6,21 +6,27 @@ import styles from './PorQue.module.css';
 
 type Props = {
   comSom: string;
+  pausar: string;
+  continuar: string;
   legenda: string;
   /** `id` do texto que descreve o vídeo (a nota embaixo dele). */
   descricao: string;
-  /** O que fica embaixo do vídeo, depois do botão de som (a nota e o botão de agendar). */
+  /** O que fica embaixo do vídeo, depois dos botões dele (a nota e o botão de agendar). */
   children: ReactNode;
 };
 
 /**
  * O vídeo do pátio: toca mudo, em loop, enquanto metade dele está na tela, e nada baixa antes disso (preload="none").
- * "Assistir com som" (embaixo, para não cobrir os números do filme) recomeça do início com som e controles.
- * Com movimento reduzido, só toca pelo botão.
+ * "Assistir com som" (embaixo, para não cobrir os números do filme) recomeça do início com som e controles;
+ * "Pausar" para o loop mudo. Com movimento reduzido, só toca pelo botão.
  */
-export function VideoDemo({ comSom, legenda, descricao, children }: Props) {
+export function VideoDemo({ comSom, pausar, continuar, legenda, descricao, children }: Props) {
   const ref = useRef<HTMLVideoElement>(null);
+  // o visitante ligou o som ou pausou: a rolagem não toca nem pausa mais o vídeo por ele
+  const doVisitante = useRef(false);
   const [comAudio, setComAudio] = useState(false);
+  const [tocando, setTocando] = useState(false);
+  const [pausado, setPausado] = useState(false);
 
   useEffect(() => {
     const video = ref.current;
@@ -29,7 +35,7 @@ export function VideoDemo({ comSom, legenda, descricao, children }: Props) {
     video.muted = true;
     const observador = new IntersectionObserver(
       ([visto]) => {
-        if (!video.muted) return; // depois do som, quem manda é o visitante, pelos controles
+        if (doVisitante.current) return;
         if (visto.isIntersecting) video.play().catch(() => {}); // autoplay recusado: ficam a capa e o botão
         else video.pause();
       },
@@ -42,12 +48,23 @@ export function VideoDemo({ comSom, legenda, descricao, children }: Props) {
   const ouvir = () => {
     const video = ref.current;
     if (!video) return;
+    doVisitante.current = true;
     video.muted = false;
     video.loop = false;
     video.currentTime = 0;
     video.controls = true;
     video.play().catch(() => {});
+    video.focus(); // o botão some: o foco segue para os controles que acabaram de aparecer
     setComAudio(true);
+  };
+
+  const alternar = () => {
+    const video = ref.current;
+    if (!video) return;
+    doVisitante.current = tocando;
+    setPausado(tocando);
+    if (tocando) video.pause();
+    else video.play().catch(() => {});
   };
 
   return (
@@ -61,6 +78,8 @@ export function VideoDemo({ comSom, legenda, descricao, children }: Props) {
           preload="none"
           poster="/video/autohub-demo.jpg"
           aria-describedby={descricao}
+          onPlay={() => setTocando(true)}
+          onPause={() => setTocando(false)}
         >
           <source src="/video/autohub-demo-720.mp4" type="video/mp4" media="(max-width: 860px)" />
           <source src="/video/autohub-demo-1080.mp4" type="video/mp4" />
@@ -69,13 +88,20 @@ export function VideoDemo({ comSom, legenda, descricao, children }: Props) {
       </div>
       <div className={styles.pe}>
         {!comAudio && (
-          <button type="button" className={`${botao.botao} ${botao.contorno} ${botao.grande} ${styles.som}`} onClick={ouvir}>
-            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-              <path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" />
-              <path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-            </svg>
-            {comSom}
-          </button>
+          <div className={styles.controles}>
+            <button type="button" className={`${botao.botao} ${botao.contorno} ${botao.grande} ${styles.som}`} onClick={ouvir}>
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" />
+                <path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+              {comSom}
+            </button>
+            {(tocando || pausado) && (
+              <button type="button" className={`${botao.botao} ${botao.contorno} ${botao.grande}`} onClick={alternar}>
+                {tocando ? pausar : continuar}
+              </button>
+            )}
+          </div>
         )}
         {children}
       </div>

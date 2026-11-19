@@ -75,6 +75,8 @@ export const site: Site = {
     titulo: 'Carro parado é dinheiro parado. O AutoHub mostra quanto.',
     nota: 'Maré Veículos, loja de demonstração com 22 carros. Preços pela FIPE de novembro de 2026.',
     comSom: 'Assistir com som',
+    pausar: 'Pausar',
+    continuar: 'Continuar',
     legenda: 'Português',
   },
 

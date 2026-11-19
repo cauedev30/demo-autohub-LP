@@ -32,6 +32,8 @@ describe('conteúdo da landing', () => {
       site.porQue.titulo,
       site.porQue.nota,
       site.porQue.comSom,
+      site.porQue.pausar,
+      site.porQue.continuar,
       site.porQue.legenda,
       ...site.itens.flatMap((i) => [i.titulo, i.texto]),
       ...site.emBreve.flatMap((i) => [i.titulo, i.texto]),

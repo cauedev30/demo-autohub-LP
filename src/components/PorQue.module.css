@@ -25,7 +25,12 @@
   object-fit: cover;
 }
 
-/* embaixo do vídeo, não sobre ele: em qualquer canto o botão cobriria números do filme (no celular, um quinto dele) */
+/* embaixo do vídeo, não sobre ele: em qualquer canto os botões cobririam números do filme (no celular, um quinto dele) */
+.controles {
+  display: flex;
+  gap: 10px;
+}
+
 .som {
   gap: 10px;
 }
@@ -52,8 +57,12 @@
 
 @media (max-width: 560px) {
   .pe > a,
-  .pe > button {
+  .controles {
     flex: 1 1 100%;
     margin-left: 0;
+  }
+
+  .som {
+    flex: 1 1 auto;
   }
 }

@@ -38,6 +38,8 @@ npm run dev                  # http://localhost:3000
   `RolagemSuave` (cliente, sem markup) rola até as âncoras sem trocar o hash.
 - Vídeo da seção "Por que o AutoHub" (`PorQue` e `VideoDemo`): `public/video/`, com 1080p, 720p (celular), capa e
   legenda. É gerado no projeto do vídeo, fora deste repo: trocar o vídeo é trocar os quatro arquivos com os mesmos nomes.
+  O servidor precisa responder a Range (206), ou o iPhone não toca o vídeo: a Vercel e o Caddy respondem; o Workers
+  Static Assets do Cloudflare não (antes de publicar lá, servir `/video/` por um Worker que responda a Range).
 - Link do WhatsApp: `src/lib/whatsapp.ts`. Sem `NEXT_PUBLIC_WHATSAPP_NUMBER` válido, o link vira `#agendar`.
 - URL do site e modo de indexação: `src/lib/ambiente.ts` (usado por `layout.tsx`, `robots.ts` e `sitemap.ts`).
 - Tokens da direção "Noite" e a fonte (Archivo variável com eixo de largura, do pacote

@@ -78,6 +78,9 @@ export type PorQue = {
   nota: string;
   /** Botão que recomeça o vídeo do início, com som. */
   comSom: string;
+  /** Pausa e retoma o loop mudo (quem não quer movimento na tela precisa conseguir parar). */
+  pausar: string;
+  continuar: string;
   /** Nome da faixa de legenda no menu do player. */
   legenda: string;
 };

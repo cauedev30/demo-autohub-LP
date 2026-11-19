@@ -20,6 +20,8 @@ test('capa e legenda: a legenda tem as nove falas e o vídeo responde a Range', 
   expect(pedaco.status()).toBe(206);
   expect(pedaco.headers()['content-range']).toMatch(/^bytes 0-99\/\d+$/);
   expect((await pedaco.body()).length).toBe(100);
+  // sem tamanho declarado (resposta em pedaços), o Safari do npm run preview pode recusar o vídeo
+  expect(pedaco.headers()['content-length']).toBe('100');
 });
 
 const estado = (page: Page) =>
@@ -92,6 +94,43 @@ test.describe('seção Por que o AutoHub', () => {
     await rolaAteVideo(page);
     await page.waitForTimeout(1000);
     expect(await estado(page)).toMatchObject({ tocando: false, mudo: false });
+  });
+
+  test('quem silencia pelos controles e pausa não vê o vídeo voltar a tocar', async ({ page }) => {
+    await page.goto('/');
+    await rolaAteVideo(page);
+    await page.getByRole('button', { name: site.porQue.comSom }).click();
+    await page.locator('video').evaluate((v: HTMLVideoElement) => {
+      v.muted = true;
+      v.pause();
+    });
+    await rolaAoTopo(page);
+    await rolaAteVideo(page);
+    await page.waitForTimeout(1000);
+    expect((await estado(page)).tocando).toBe(false);
+  });
+
+  test('depois de "Assistir com som" pelo teclado, o foco vai para o vídeo', async ({ page }) => {
+    await page.goto('/');
+    await rolaAteVideo(page);
+    await page.getByRole('button', { name: site.porQue.comSom }).focus();
+    await page.keyboard.press('Enter');
+    expect(await page.evaluate(() => document.activeElement?.tagName)).toBe('VIDEO');
+  });
+
+  test('o loop mudo tem "Pausar": fica parado ao rolar de volta, e "Continuar" volta a tocar mudo', async ({ page }) => {
+    await page.goto('/');
+    await rolaAteVideo(page);
+    await expect.poll(async () => (await estado(page)).tocando, { timeout: 10_000 }).toBe(true);
+    await page.getByRole('button', { name: site.porQue.pausar }).click();
+    expect((await estado(page)).tocando).toBe(false);
+    await rolaAoTopo(page);
+    await rolaAteVideo(page);
+    await page.waitForTimeout(1000);
+    expect((await estado(page)).tocando).toBe(false);
+    await page.getByRole('button', { name: site.porQue.continuar }).click();
+    await expect.poll(async () => (await estado(page)).tocando).toBe(true);
+    expect((await estado(page)).mudo).toBe(true);
   });
 
   test('autoplay recusado: a capa e o botão ficam, sem erro na página', async ({ page }) => {

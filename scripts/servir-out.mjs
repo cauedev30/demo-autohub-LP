@@ -56,7 +56,8 @@ createServer(async (req, res) => {
   try {
     const corpo = await readFile(arquivo);
     const cabecalhos = { 'Content-Type': tipos[extname(arquivo)] ?? 'application/octet-stream', 'Accept-Ranges': 'bytes' };
-    // Range, como no Cloudflare e na Vercel: o vídeo pede pedaços e, para voltar ao início, pede de novo.
+    // Range, como na Vercel: o vídeo pede pedaços e, para voltar ao início, pede de novo. O Workers Static Assets do
+    // Cloudflare não responde a Range (devolve 200 com o arquivo inteiro), e aí o Safari do iPhone não toca o vídeo.
     const faixa = status === 200 && /^bytes=(\d*)-(\d*)$/.exec(req.headers.range ?? '');
     if (faixa && (faixa[1] || faixa[2])) {
       const total = corpo.length;
@@ -66,11 +67,15 @@ createServer(async (req, res) => {
         res.writeHead(416, { 'Content-Range': `bytes */${total}` }).end();
         return;
       }
-      res.writeHead(206, { ...cabecalhos, 'Content-Range': `bytes ${inicio}-${fim}/${total}` });
+      res.writeHead(206, {
+        ...cabecalhos,
+        'Content-Range': `bytes ${inicio}-${fim}/${total}`,
+        'Content-Length': fim - inicio + 1,
+      });
       res.end(corpo.subarray(inicio, fim + 1));
       return;
     }
-    res.writeHead(status, cabecalhos);
+    res.writeHead(status, { ...cabecalhos, 'Content-Length': corpo.length });
     res.end(corpo);
   } catch {
     res.writeHead(404).end('Não encontrado');
