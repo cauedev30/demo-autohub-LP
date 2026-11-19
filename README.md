@@ -36,6 +36,8 @@ npm run dev                  # http://localhost:3000
 - Componentes em `src/components/`, cada um com o seu `Componente.module.css` (CSS Modules, portado da direção Noite);
   só os tokens, o `.wrap`, o `.sr`, o `.pular` e a entrada `.entra` ficam em `globals.css`. `Secao.module.css` é a base compartilhada das seções com título;
   `RolagemSuave` (cliente, sem markup) rola até as âncoras sem trocar o hash.
+- Vídeo da seção "Por que o AutoHub" (`PorQue` e `VideoDemo`): `public/video/`, com 1080p, 720p (celular), capa e
+  legenda. É gerado no projeto do vídeo, fora deste repo: trocar o vídeo é trocar os quatro arquivos com os mesmos nomes.
 - Link do WhatsApp: `src/lib/whatsapp.ts`. Sem `NEXT_PUBLIC_WHATSAPP_NUMBER` válido, o link vira `#agendar`.
 - URL do site e modo de indexação: `src/lib/ambiente.ts` (usado por `layout.tsx`, `robots.ts` e `sitemap.ts`).
 - Tokens da direção "Noite" e a fonte (Archivo variável com eixo de largura, do pacote

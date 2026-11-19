@@ -1,0 +1,84 @@
+'use client';
+
+import { useEffect, useRef, useState, type ReactNode } from 'react';
+import botao from './Botao.module.css';
+import styles from './PorQue.module.css';
+
+type Props = {
+  comSom: string;
+  legenda: string;
+  /** `id` do texto que descreve o vídeo (a nota embaixo dele). */
+  descricao: string;
+  /** O que fica embaixo do vídeo, depois do botão de som (a nota e o botão de agendar). */
+  children: ReactNode;
+};
+
+/**
+ * O vídeo do pátio: toca mudo, em loop, enquanto metade dele está na tela, e nada baixa antes disso (preload="none").
+ * "Assistir com som" (embaixo, para não cobrir os números do filme) recomeça do início com som e controles.
+ * Com movimento reduzido, só toca pelo botão.
+ */
+export function VideoDemo({ comSom, legenda, descricao, children }: Props) {
+  const ref = useRef<HTMLVideoElement>(null);
+  const [comAudio, setComAudio] = useState(false);
+
+  useEffect(() => {
+    const video = ref.current;
+    if (!video || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    // o atributo muted do HTML nem sempre vira propriedade na hidratação, e o navegador só toca sozinho o vídeo mudo
+    video.muted = true;
+    const observador = new IntersectionObserver(
+      ([visto]) => {
+        if (!video.muted) return; // depois do som, quem manda é o visitante, pelos controles
+        if (visto.isIntersecting) video.play().catch(() => {}); // autoplay recusado: ficam a capa e o botão
+        else video.pause();
+      },
+      { threshold: 0.5 },
+    );
+    observador.observe(video);
+    return () => observador.disconnect();
+  }, []);
+
+  const ouvir = () => {
+    const video = ref.current;
+    if (!video) return;
+    video.muted = false;
+    video.loop = false;
+    video.currentTime = 0;
+    video.controls = true;
+    video.play().catch(() => {});
+    setComAudio(true);
+  };
+
+  return (
+    <>
+      <div className={styles.quadro}>
+        <video
+          ref={ref}
+          muted
+          loop
+          playsInline
+          preload="none"
+          poster="/video/autohub-demo.jpg"
+          aria-describedby={descricao}
+        >
+          <source src="/video/autohub-demo-720.mp4" type="video/mp4" media="(max-width: 860px)" />
+          <source src="/video/autohub-demo-1080.mp4" type="video/mp4" />
+          <track kind="captions" src="/video/autohub-demo.vtt" srcLang="pt-BR" label={legenda} />
+        </video>
+      </div>
+      <div className={styles.pe}>
+        {!comAudio && (
+          <button type="button" className={`${botao.botao} ${botao.contorno} ${botao.grande} ${styles.som}`} onClick={ouvir}>
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" />
+              <path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+            {comSom}
+          </button>
+        )}
+        {children}
+      </div>
+    </>
+  );
+}

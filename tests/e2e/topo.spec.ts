@@ -246,6 +246,8 @@ test.describe('prefers-reduced-motion: reduce', () => {
     // Qualquer outro valor abaixo de 1 seria resto de animação.
     const menores = await page.evaluate(() =>
       [...document.querySelectorAll('section, section *')]
+        // source e track ficam dentro do <video> e não são desenhados: o navegador não calcula estilo para eles
+        .filter((el) => !el.matches('video *'))
         .map((el) => ({ el, opacidade: parseFloat(getComputedStyle(el).opacity) }))
         .filter(({ el, opacidade }) => {
           if (opacidade >= 1) return false;
@@ -260,7 +262,13 @@ test.describe('prefers-reduced-motion: reduce', () => {
     const deslocados = await page.evaluate(() =>
       [...document.querySelectorAll('section *')]
         // dentro de um SVG, o transform é geometria do desenho (a logo), não animação
-        .filter((el) => getComputedStyle(el).transform !== 'none' && !el.matches('[class*="freio"]') && !el.closest('svg'))
+        .filter(
+          (el) =>
+            getComputedStyle(el).transform !== 'none' &&
+            !el.matches('[class*="freio"]') &&
+            !el.closest('svg') &&
+            !el.matches('video *'),
+        )
         .map((el) => el.className),
     );
     expect(deslocados).toEqual([]);

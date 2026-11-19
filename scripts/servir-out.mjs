@@ -19,6 +19,9 @@ const tipos = {
   '.woff': 'font/woff',
   '.txt': 'text/plain; charset=utf-8',
   '.xml': 'application/xml; charset=utf-8',
+  '.jpg': 'image/jpeg',
+  '.mp4': 'video/mp4',
+  '.vtt': 'text/vtt; charset=utf-8',
 };
 
 async function existe(caminho) {
@@ -52,7 +55,22 @@ createServer(async (req, res) => {
   }
   try {
     const corpo = await readFile(arquivo);
-    res.writeHead(status, { 'Content-Type': tipos[extname(arquivo)] ?? 'application/octet-stream' });
+    const cabecalhos = { 'Content-Type': tipos[extname(arquivo)] ?? 'application/octet-stream', 'Accept-Ranges': 'bytes' };
+    // Range, como no Cloudflare e na Vercel: o vídeo pede pedaços e, para voltar ao início, pede de novo.
+    const faixa = status === 200 && /^bytes=(\d*)-(\d*)$/.exec(req.headers.range ?? '');
+    if (faixa && (faixa[1] || faixa[2])) {
+      const total = corpo.length;
+      const inicio = faixa[1] ? Number(faixa[1]) : Math.max(0, total - Number(faixa[2]));
+      const fim = faixa[1] && faixa[2] ? Math.min(Number(faixa[2]), total - 1) : total - 1;
+      if (inicio > fim || inicio >= total) {
+        res.writeHead(416, { 'Content-Range': `bytes */${total}` }).end();
+        return;
+      }
+      res.writeHead(206, { ...cabecalhos, 'Content-Range': `bytes ${inicio}-${fim}/${total}` });
+      res.end(corpo.subarray(inicio, fim + 1));
+      return;
+    }
+    res.writeHead(status, cabecalhos);
     res.end(corpo);
   } catch {
     res.writeHead(404).end('Não encontrado');

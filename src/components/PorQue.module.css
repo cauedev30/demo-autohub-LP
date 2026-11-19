@@ -1,0 +1,59 @@
+/* Seção do vídeo: rótulo curto, título, o filme num quadro 16:9 e, embaixo, a nota e o botão de agendar.
+   O .secao e o .titulo vêm de Secao.module.css; o botão de som usa o .botao de Botao.module.css. */
+.rotulo {
+  color: var(--mudo);
+  font-size: 0.9375rem;
+  margin-bottom: 14px;
+}
+
+.titulo {
+  max-width: 22ch;
+}
+
+.quadro {
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--fio);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #000;
+}
+
+.quadro video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* embaixo do vídeo, não sobre ele: em qualquer canto o botão cobriria números do filme (no celular, um quinto dele) */
+.som {
+  gap: 10px;
+}
+
+.pe {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 24px;
+  margin-top: 20px;
+}
+
+/* a nota fica junto do botão de som; o de agendar vai para a ponta direita */
+.pe > a {
+  margin-left: auto;
+}
+
+.nota {
+  flex: 1 1 260px;
+  color: var(--mudo);
+  font-size: 0.9375rem;
+  max-width: 52ch;
+}
+
+@media (max-width: 560px) {
+  .pe > a,
+  .pe > button {
+    flex: 1 1 100%;
+    margin-left: 0;
+  }
+}

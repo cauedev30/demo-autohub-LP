@@ -82,6 +82,7 @@ for (const largura of larguras) {
       }
       const h2 = titulos.filter((t) => t.nivel === 2).map((t) => t.texto);
       expect(h2).toEqual([
+        site.porQue.titulo,
         site.secoes.itens,
         site.secoes.versoes,
         site.fundadoras.titulo,
@@ -245,8 +246,8 @@ for (const largura of larguras) {
           }
         }
       };
-      // "Agendar test-drive": topo, hero, fundadoras e fechamento (um botão só por lugar)
-      await confere(site.acoes.agendar.rotulo, site.acoes.agendar.mensagem, 4);
+      // "Agendar test-drive": topo, hero, vídeo, fundadoras e fechamento (um botão só por lugar)
+      await confere(site.acoes.agendar.rotulo, site.acoes.agendar.mensagem, 5);
 
       const fechamento = page.locator('#agendar');
       await expect(fechamento.getByRole('heading', { level: 2 })).toHaveText(site.fechamento.titulo);
@@ -419,6 +420,8 @@ test.describe('prefers-reduced-motion: reduce', () => {
 
     const escondidos = await page.evaluate(() =>
       [...document.querySelectorAll('main > section:not(:first-child), main > section:not(:first-child) *')]
+        // source e track ficam dentro do <video> e não são desenhados: o navegador não calcula estilo para eles
+        .filter((el) => !el.matches('video *'))
         .filter((el) => {
           const e = getComputedStyle(el);
           return parseFloat(e.opacity) < 1 || e.visibility === 'hidden' || e.transform !== 'none';
@@ -427,6 +430,7 @@ test.describe('prefers-reduced-motion: reduce', () => {
     );
     expect(escondidos).toEqual([]);
     for (const titulo of [
+      site.porQue.titulo,
       site.secoes.itens,
       site.secoes.versoes,
       site.fundadoras.titulo,

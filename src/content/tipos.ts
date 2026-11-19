@@ -71,8 +71,21 @@ export type Fundadoras = { titulo: string; texto: string };
 
 export type Pergunta = { pergunta: string; resposta: string };
 
+/** Seção do vídeo, logo depois dos números. */
+export type PorQue = {
+  titulo: string;
+  /** Embaixo do vídeo; também é a descrição dele para leitor de tela. */
+  nota: string;
+  /** Botão que recomeça o vídeo do início, com som. */
+  comSom: string;
+  /** Nome da faixa de legenda no menu do player. */
+  legenda: string;
+};
+
 export type Secoes = {
   numeros: string;
+  /** Rótulo curto acima do título da seção do vídeo. */
+  porQue: string;
   itens: string;
   emBreve: string;
   versoes: string;
@@ -127,6 +140,7 @@ export type Site = {
   celular: Celular;
   secoes: Secoes;
   numeros: Numero[];
+  porQue: PorQue;
   itens: ItemDeSerie[];
   /** O que ainda está sendo construído: aparece depois dos itens de série, sem data prometida. */
   emBreve: ItemDeSerie[];

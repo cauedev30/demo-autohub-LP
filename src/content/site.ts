@@ -56,6 +56,7 @@ export const site: Site = {
 
   secoes: {
     numeros: 'Em números',
+    porQue: 'Por que o AutoHub',
     itens: 'Itens de série',
     emBreve: 'Em breve',
     versoes: 'Versões',
@@ -69,6 +70,13 @@ export const site: Site = {
     { valor: 'Ilimitados', rotulo: 'usuários: a equipe toda entra, sem custo a mais' },
     { valor: 'R$ 299', rotulo: 'por mês, até 30 carros' },
   ],
+
+  porQue: {
+    titulo: 'Carro parado é dinheiro parado. O AutoHub mostra quanto.',
+    nota: 'Maré Veículos, loja de demonstração com 22 carros. Preços pela FIPE de novembro de 2026.',
+    comSom: 'Assistir com som',
+    legenda: 'Português',
+  },
 
   itens: [
     {

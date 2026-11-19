@@ -5,6 +5,7 @@ import { Hero } from '@/components/Hero';
 import { ItensDeSerie } from '@/components/ItensDeSerie';
 import { Numeros } from '@/components/Numeros';
 import { Perguntas } from '@/components/Perguntas';
+import { PorQue } from '@/components/PorQue';
 import { Rodape } from '@/components/Rodape';
 import { RolagemSuave } from '@/components/RolagemSuave';
 import { SemLetraMiuda } from '@/components/SemLetraMiuda';
@@ -18,6 +19,7 @@ export default function Home() {
       <main id="conteudo">
         <Hero />
         <Numeros />
+        <PorQue />
         <ItensDeSerie />
         <Versoes />
         <Fundadoras />
